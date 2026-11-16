@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="km" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>បងស្រនម៉ាស៉ុនច្រូត | សេវាកម្មច្រូតកាត់ស្រូវ និងវាយដីត្រាក់ទ័រ ខេត្តតាកែវ</title>
+  <meta name="description" content="បងស្រនម៉ាស៉ុនច្រូត - សេវាកម្មច្រូតកាត់ស្រូវ (Kubota DC-70 Pro) និងវាយដី ឈូសដីត្រាក់ទ័រ (Kubota M6040) នៅភូមិព្រៃភ្លង ស្រុកទ្រាំង ខេត្តតាកែវ។ ទំនាក់ទំនង 097 547 1944" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            khmer: ['"Kantumruy Pro"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', '"Kantumruy Pro"', 'sans-serif'],
+          },
+          colors: {
+            kubota: {
+              orange: '#EA580C',
+              dark: '#C2410C',
+              light: '#FFF7ED',
+            },
+            paddy: {
+              green: '#15803D',
+              dark: '#14532D',
+              light: '#F0FDF4',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
+    }
+    .touch-btn {
+      min-height: 52px;
+    }
+  </style>
+</head>
+<body class="bg-stone-50 text-stone-800 pb-24 md:pb-0">
+
+  <!-- Sticky Top Navigation -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-stone-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-xl bg-kubota-orange text-white flex items-center justify-center font-bold text-xl shadow-sm shrink-0">
+          🚜
+        </div>
+        <div>
+          <h1 class="font-bold text-lg md:text-xl text-stone-900 leading-tight" data-i18n="brandName">
+            បងស្រនម៉ាស៉ុនច្រូត
+          </h1>
+          <p class="text-xs text-stone-500 flex items-center gap-1" data-i18n="locationShort">
+            📍 ភូមិព្រៃភ្លង ស្រុកទ្រាំង ខេត្តតាកែវ
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Language Switcher -->
+        <button id="langToggle" onclick="toggleLanguage()" class="px-3 py-2 rounded-xl border border-stone-300 bg-stone-100 hover:bg-stone-200 text-sm font-semibold text-stone-800 transition">
+          EN / ខ្មែរ
+        </button>
+        <!-- Direct Call CTA -->
+        <a href="tel:0975471944" class="hidden sm:inline-flex items-center gap-2 bg-paddy-green hover:bg-paddy-dark text-white font-bold px-4 py-2.5 rounded-xl shadow-sm transition">
+          <span>📞</span>
+          <span>097 547 1944</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-stone-900 via-stone-800 to-paddy-dark text-white overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 py-12 md:py-16 grid md:grid-cols-2 gap-8 items-center">
+      <div class="space-y-5">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-kubota-orange/20 border border-kubota-orange/40 text-orange-300 text-sm font-semibold" data-i18n="heroBadge">
+          🌾 សេវាកម្មកសិកម្មប្រចាំខេត្តតាកែវ
+        </span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug" data-i18n="heroTitle">
+          សេវាកម្មច្រូតកាត់ស្រូវ និងវាយដីត្រាក់ទ័រ រហ័ស ស្អាត តម្លៃសមរម្យ
+        </h2>
+        <p class="text-stone-300 text-base md:text-lg leading-relaxed" data-i18n="heroSubtitle">
+          បម្រើសេវាកម្មជូនបងប្អូនកសិករដោយគ្រឿងចក្រ Kubota ទំនើបៗ ច្រូតស្អាតមិនជ្រុះស្រូវ វាយដីម៉ដ្ឋល្អ ទាន់ពេលវេលា នៅភូមិព្រៃភ្លង ស្រុកទ្រាំង និងតំបន់ជុំវិញខេត្តតាកែវ។
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 pt-2">
+          <a href="tel:0975471944" class="touch-btn inline-flex items-center justify-center gap-2 bg-kubota-orange hover:bg-kubota-dark text-white font-bold text-lg px-6 py-3.5 rounded-2xl shadow-lg transition">
+            <span>📞</span>
+            <span data-i18n="callNowBtn">តេកក់ឥឡូវនេះ៖ 097 547 1944</span>
+          </a>
+          <a href="#calculator" class="touch-btn inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-semibold text-base px-6 py-3.5 rounded-2xl transition">
+            <span>🧮</span>
+            <span data-i18n="calcPriceBtn">គណនាតម្លៃតាមទំហំដី</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Featured Machine Card -->
+      <div class="relative">
+        <div class="rounded-3xl overflow-hidden border-4 border-white/15 shadow-2xl bg-stone-800">
+          <img src="images/kubota-dc70-pro.png" alt="ម៉ាស៊ីនច្រូតស្រូវ Kubota DC-70 Pro" class="w-full h-80 md:h-96 object-cover" />
+          <div class="p-4 bg-stone-900/90 flex items-center justify-between">
+            <div>
+              <p class="font-bold text-white text-base">Kubota DC-70 Pro</p>
+              <p class="text-xs text-stone-300" data-i18n="heroImgCaption">ម៉ាស៊ីនច្រូតស្រូវកម្លាំងខ្លាំង ច្រូតលឿន និងស្អាត</p>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-paddy-green text-white text-xs font-bold" data-i18n="readyBadge">រួចរាល់បម្រើសេវា</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="max-w-6xl mx-auto px-4 py-12 md:py-16">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <h3 class="text-2xl md:text-3xl font-bold text-stone-900" data-i18n="servicesHeading">
+        សេវាកម្មចម្បងរបស់យើង
+      </h3>
+      <p class="text-stone-600 mt-2" data-i18n="servicesSubheading">
+        ចុចជ្រើសរើសសេវាកម្មខាងក្រោម ដើម្បីគណនាតម្លៃ និងកក់ទុកជាមុន
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Service 1: Rice Harvesting -->
+      <div class="bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-md hover:shadow-xl transition flex flex-col">
+        <div class="relative h-72 bg-stone-100">
+          <img src="images/kubota-dc70-pro.png" alt="ច្រូតកាត់ស្រូវ Kubota DC-70 Pro" class="w-full h-full object-cover" />
+          <span class="absolute top-4 left-4 bg-kubota-orange text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow">
+            Kubota DC-70 Pro
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-5">
+          <div>
+            <h4 class="text-2xl font-bold text-stone-900" data-i18n="harvestTitle">
+              សេវាកម្មច្រូតកាត់ស្រូវ
+            </h4>
+            <p class="text-stone-600 mt-2 leading-relaxed" data-i18n="harvestDesc">
+              ច្រូតស្រូវគ្រប់ប្រភេទ (ស្រូវស្រាល ស្រូវកណ្តាល ស្រូវធ្ងន់ និងស្រូវដួល) ដោយម៉ាស៊ីន Kubota DC-70 Pro ជំនាន់ថ្មី បោកបែនស្អាត មិនបែកគ្រាប់ និងបាញ់ចូលបាវរហ័សទាន់ចិត្ត។
+            </p>
+            <ul class="mt-4 space-y-2 text-sm text-stone-700">
+              <li class="flex items-center gap-2">✅ <span data-i18n="harvestFeat1">ច្រូតស្អាត កាត់បន្ថយការជ្រុះបាត់បង់គ្រាប់ស្រូវ</span></li>
+              <li class="flex items-center gap-2">✅ <span data-i18n="harvestFeat2">ចុះស្រែភក់ ឬស្រូវដួលបានល្អ</span></li>
+              <li class="flex items-center gap-2">✅ <span data-i18n="harvestFeat3">តម្លៃប៉ាន់ស្មាន៖ ៤០០,០០០ ៛ / ហិកតា (អាចចរចាតាមស្ថានភាពស្រែ)</span></li>
+            </ul>
+          </div>
+          <button onclick="selectService('harvest')" class="touch-btn w-full bg-kubota-orange hover:bg-kubota-dark text-white font-bold py-3.5 px-5 rounded-2xl transition shadow-sm">
+            <span data-i18n="bookHarvestBtn">ជ្រើសរើសសេវាច្រូតកាត់ស្រូវ ➔</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Service 2: Tractor Plowing & Tilling -->
+      <div class="bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-md hover:shadow-xl transition flex flex-col">
+        <div class="relative h-72 bg-stone-100">
+          <img src="images/kubota-m6040.png" alt="វាយដីត្រាក់ទ័រ Kubota M6040" class="w-full h-full object-cover" />
+          <span class="absolute top-4 left-4 bg-paddy-green text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow">
+            Kubota M6040
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-5">
+          <div>
+            <h4 class="text-2xl font-bold text-stone-900" data-i18n="tractorTitle">
+              សេវាកម្មវាយដី និងឈូសដីត្រាក់ទ័រ
+            </h4>
+            <p class="text-stone-600 mt-2 leading-relaxed" data-i18n="tractorDesc">
+              ភ្ជួររាស់ វាយដីស្រែ វាយដីចម្ការ និងឈូសពង្រាបដីដោយត្រាក់ទ័រ Kubota M6040 កម្លាំងខ្លាំង ធ្វើឱ្យដីម៉ដ្ឋ ធូរ ងាយស្រួលព្រោះ ឬស្ទូង និងបង្កើនទិន្នផលដំណាំ។
+            </p>
+            <ul class="mt-4 space-y-2 text-sm text-stone-700">
+              <li class="flex items-center gap-2">✅ <span data-i18n="tractorFeat1">វាយដីសើម ដីគោក និងភ្ជួរបង្កប់ជញ្ជ្រាំងបានល្អ</span></li>
+              <li class="flex items-center gap-2">✅ <span data-i18n="tractorFeat2">មានប៉ែលមុខសម្រាប់ឈូសពង្រាបភ្លឺ ឬដីឡូត៍</span></li>
+              <li class="flex items-center gap-2">✅ <span data-i18n="tractorFeat3">តម្លៃប៉ាន់ស្មាន៖ ២៥០,០០០ ៛ / ហិកតា (អាចចរចាតាមប្រភេទដី)</span></li>
+            </ul>
+          </div>
+          <button onclick="selectService('tractor')" class="touch-btn w-full bg-paddy-green hover:bg-paddy-dark text-white font-bold py-3.5 px-5 rounded-2xl transition shadow-sm">
+            <span data-i18n="bookTractorBtn">ជ្រើសរើសសេវាវាយដីត្រាក់ទ័រ ➔</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Price Calculator & Quick Booking Section -->
+  <section id="calculator" class="max-w-4xl mx-auto px-4 py-8 md:py-12">
+    <div class="bg-white rounded-3xl border border-stone-200 shadow-lg p-6 md:p-10">
+      <div class="mb-6">
+        <span class="text-kubota-orange font-bold text-sm uppercase tracking-wide" data-i18n="calcTag">គណនាតម្លៃ និងកក់ជួល</span>
+        <h3 class="text-2xl md:text-3xl font-bold text-stone-900 mt-1" data-i18n="calcHeading">
+          ប៉ាន់ស្មានតម្លៃតាមទំហំដីរបស់អ្នក
+        </h3>
+      </div>
+
+      <form id="bookingForm" onsubmit="submitBooking(event)" class="space-y-6">
+        <!-- Service Type -->
+        <div>
+          <label class="block text-sm font-bold text-stone-700 mb-2" data-i18n="labelService">១. ជ្រើសរើសប្រភេទសេវាកម្ម</label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label class="cursor-pointer">
+              <input type="radio" name="serviceType" value="harvest" class="peer sr-only" checked onchange="calculateTotal()" />
+              <div class="touch-btn p-4 rounded-2xl border-2 border-stone-200 peer-checked:border-kubota-orange peer-checked:bg-kubota-light flex items-center justify-between transition">
+                <span class="font-bold text-stone-900" data-i18n="optHarvest">🌾 ច្រូតកាត់ស្រូវ (DC-70 Pro)</span>
+                <span class="text-xs font-bold text-kubota-orange">៤០ម៉ឺន/ហិកតា</span>
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="serviceType" value="tractor" class="peer sr-only" onchange="calculateTotal()" />
+              <div class="touch-btn p-4 rounded-2xl border-2 border-stone-200 peer-checked:border-paddy-green peer-checked:bg-paddy-light flex items-center justify-between transition">
+                <span class="font-bold text-stone-900" data-i18n="optTractor">🚜 វាយដីត្រាក់ទ័រ (M6040)</span>
+                <span class="text-xs font-bold text-paddy-green">២៥ម៉ឺន/ហិកតា</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Land Size & Unit -->
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="landSize" class="block text-sm font-bold text-stone-700 mb-2" data-i18n="labelSize">២. បញ្ចូលទំហំដី</label>
+            <input type="number" id="landSize" step="0.1" min="0.1" value="1" required oninput="calculateTotal()"
+              class="touch-btn w-full px-4 py-3 rounded-2xl border border-stone-300 text-lg font-bold text-stone-900 focus:outline-none focus:ring-2 focus:ring-kubota-orange" />
+          </div>
+          <div>
+            <label for="landUnit" class="block text-sm font-bold text-stone-700 mb-2" data-i18n="labelUnit">៣. ខ្នាតរង្វាស់ដី</label>
+            <select id="landUnit" onchange="calculateTotal()"
+              class="touch-btn w-full px-4 py-3 rounded-2xl border border-stone-300 text-base font-bold text-stone-900 bg-white focus:outline-none focus:ring-2 focus:ring-kubota-orange">
+              <option value="hectare" data-i18n="unitHectare">ហិកតា (Hectare - ១០០ អា)</option>
+              <option value="rai" data-i18n="unitRai">រ៉ៃ (Rai - ១៦ អា)</option>
+              <option value="are" data-i18n="unitAre">អា (Are - ១០០ ម៉ែត្រការ៉េ)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Customer Info -->
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="customerName" class="block text-sm font-bold text-stone-700 mb-2" data-i18n="labelName">៤. ឈ្មោះរបស់អ្នក</label>
+            <input type="text" id="customerName" placeholder="ឧទាហរណ៍៖ ពូ សុខ" required
+              class="touch-btn w-full px-4 py-3 rounded-2xl border border-stone-300 text-base focus:outline-none focus:ring-2 focus:ring-kubota-orange" />
+          </div>
+          <div>
+            <label for="customerPhone" class="block text-sm font-bold text-stone-700 mb-2" data-i18n="labelPhone">៥. លេខទូរស័ព្ទទំនាក់ទំនង</label>
+            <input type="tel" id="customerPhone" placeholder="097 xxx xxxx" required
+              class="touch-btn w-full px-4 py-3 rounded-2xl border border-stone-300 text-base focus:outline-none focus:ring-2 focus:ring-kubota-orange" />
+          </div>
+        </div>
+
+        <div>
+          <label for="villageLocation" class="block text-sm font-bold text-stone-700 mb-2" data-i18n="labelVillage">៦. ទីតាំងដីស្រែ (ភូមិ / ឃុំ)</label>
+          <input type="text" id="villageLocation" placeholder="ឧទាហរណ៍៖ ភូមិព្រៃភ្លង ស្រុកទ្រាំង" required
+            class="touch-btn w-full px-4 py-3 rounded-2xl border border-stone-300 text-base focus:outline-none focus:ring-2 focus:ring-kubota-orange" />
+        </div>
+
+        <!-- Live Price Display Box -->
+        <div class="p-5 rounded-2xl bg-stone-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <p class="text-sm text-stone-300" data-i18n="estTotalLabel">តម្លៃប៉ាន់ស្មានសរុប៖</p>
+            <p id="totalKhr" class="text-3xl font-extrabold text-orange-400 mt-0.5">400,000 ៛</p>
+            <p id="totalUsd" class="text-sm text-stone-400">≈ $100.00 USD (គិតតាមអត្រា ៤,០០០ ៛)</p>
+          </div>
+          <button type="submit" class="touch-btn bg-kubota-orange hover:bg-kubota-dark text-white font-bold text-lg px-7 py-4 rounded-2xl shadow-lg transition shrink-0">
+            <span data-i18n="confirmBookingBtn">បញ្ជាក់ការកក់សេវា ✓</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- About Us / Owner Trust Section -->
+  <section id="about" class="max-w-6xl mx-auto px-4 py-12 md:py-16">
+    <div class="bg-white rounded-3xl border border-stone-200 shadow-md overflow-hidden grid md:grid-cols-2 items-center">
+      <div class="h-80 md:h-full bg-stone-100">
+        <img src="images/owner.png" alt="ម្ចាស់អាជីវកម្ម បងស្រនម៉ាស៉ុនច្រូត" class="w-full h-full object-cover object-top" />
+      </div>
+      <div class="p-6 md:p-10 space-y-4">
+        <span class="inline-block px-3 py-1 rounded-full bg-paddy-light text-paddy-green text-xs font-bold" data-i18n="aboutTag">
+          អំពីអាជីវកម្មរបស់យើង
+        </span>
+        <h3 class="text-2xl md:text-3xl font-bold text-stone-900" data-i18n="aboutTitle">
+          បងស្រនម៉ាស៉ុនច្រូត — ទំនុកចិត្តរបស់កសិករនៅស្រុកទ្រាំង
+        </h3>
+        <p class="text-stone-600 leading-relaxed" data-i18n="aboutDesc">
+          យើងខ្ញុំមានបទពិសោធន៍យូរឆ្នាំក្នុងការផ្តល់សេវាកម្មច្រូតកាត់ស្រូវ និងវាយដីជូនបងប្អូនកសិករ។ គ្រឿងចក្រទាំងអស់ត្រូវបានថែទាំយ៉ាងយកចិត្តទុកដាក់ ដើម្បីធានាថាការងាររបស់បងប្អូនរួចរាល់ទាន់រដូវកាល មិនខកខានពេលវេលា។
+        </p>
+        <div class="pt-2 space-y-2 text-stone-800 font-semibold">
+          <p>📍 <span data-i18n="fullAddress">ទីតាំង៖ ភូមិព្រៃភ្លង ស្រុកទ្រាំង ខេត្តតាកែវ</span></p>
+          <p>📞 <span data-i18n="phoneDisplay">លេខទូរស័ព្ទ៖</span> <a href="tel:0975471944" class="text-kubota-orange underline font-bold">097 547 1944</a></p>
+        </div>
+        <div class="pt-3 flex flex-wrap gap-3">
+          <a href="tel:0975471944" class="touch-btn inline-flex items-center gap-2 bg-paddy-green hover:bg-paddy-dark text-white font-bold px-6 py-3 rounded-2xl transition">
+            <span>📞</span>
+            <span data-i18n="callOwnerBtn">តេជួបបងស្រនផ្ទាល់</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-stone-900 text-stone-300 py-10 px-4">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+      <div>
+        <h4 class="text-white font-bold text-lg">បងស្រនម៉ាស៉ុនច្រូត</h4>
+        <p class="text-sm text-stone-400 mt-1">ភូមិព្រៃភ្លង ស្រុកទ្រាំង ខេត្តតាកែវ • ទូរស័ព្ទ៖ 097 547 1944</p>
+      </div>
+      <p class="text-xs text-stone-500">© 2026 បងស្រនម៉ាស៉ុនច្រូត. រក្សាសិទ្ធិគ្រប់យ៉ាង។</p>
+    </div>
+  </footer>
+
+  <!-- Mobile Sticky Bottom Action Bar -->
+  <div class="fixed bottom-0 inset-x-0 z-40 bg-white border-t border-stone-200 p-3 flex gap-3 md:hidden shadow-2xl">
+    <a href="tel:0975471944" class="flex-1 bg-paddy-green text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-base shadow">
+      <span>📞</span>
+      <span>តេ 097 547 1944</span>
+    </a>
+    <a href="#calculator" class="flex-1 bg-kubota-orange text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-base shadow">
+      <span>🧮</span>
+      <span data-i18n="mobileBookBtn">កក់សេវា</span>
+    </a>
+  </div>
+
+  <!-- Booking Confirmation Modal -->
+  <div id="confirmModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl space-y-5">
+      <div class="w-14 h-14 rounded-2xl bg-paddy-light text-paddy-green flex items-center justify-center text-3xl mx-auto">
+        ✅
+      </div>
+      <div class="text-center">
+        <h4 class="text-2xl font-bold text-stone-900" data-i18n="modalTitle">បានរៀបចំព័ត៌មានកក់រួចរាល់!</h4>
+        <p class="text-sm text-stone-500 mt-1" id="bookingRef">លេខកូដកក់៖ #BS-2026</p>
+      </div>
+
+      <div id="modalSummary" class="bg-stone-50 border border-stone-200 rounded-2xl p-4 text-sm space-y-2 text-stone-700">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="space-y-2.5">
+        <a href="tel:0975471944" class="touch-btn w-full bg-paddy-green hover:bg-paddy-dark text-white font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 transition">
+          <span>📞</span>
+          <span data-i18n="modalCallBtn">តេបញ្ជាក់ទៅកាន់ 097 547 1944</span>
+        </a>
+        <a id="smsLink" href="sms:0975471944" class="touch-btn w-full bg-kubota-orange hover:bg-kubota-dark text-white font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 transition">
+          <span>💬</span>
+          <span data-i18n="modalSmsBtn">ផ្ញើសារ SMS ព័ត៌មានកក់</span>
+        </a>
+        <button onclick="closeModal()" class="w-full py-2.5 text-sm font-semibold text-stone-500 hover:text-stone-800">
+          <span data-i18n="modalCloseBtn">បិទផ្ទាំងនេះ</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentLang = 'km';
+
+    const RATES_PER_HECTARE = {
+      harvest: 400000, // 400,000 KHR per hectare
+      tractor: 250000  // 250,000 KHR per hectare
+    };
+
+    const UNIT_TO_HECTARE = {
+      hectare: 1,
+      rai: 0.16,
+      are: 0.01
+    };
+
+    const translations = {
+      km: {
+        brandName: "បងស្រនម៉ាស៉ុនច្រូត",
+        locationShort: "📍 ភូមិព្រៃភ្លង ស្រុកទ្រាំង ខេត្តតាកែវ",
+        heroBadge: "🌾 សេវាកម្មកសិកម្មប្រចាំខេត្តតាកែវ",
+        heroTitle: "សេវាកម្មច្រូតកាត់ស្រូវ និងវាយដីត្រាក់ទ័រ រហ័ស ស្អាត តម្លៃសមរម្យ",
+        heroSubtitle: "បម្រើសេវាកម្មជូនបងប្អូនកសិករដោយគ្រឿងចក្រ Kubota ទំនើបៗ ច្រូតស្អាតមិនជ្រុះស្រូវ វាយដីម៉ដ្ឋល្អ ទាន់ពេលវេលា នៅភូមិព្រៃភ្លង ស្រុកទ្រាំង និងតំបន់ជុំវិញខេត្តតាកែវ។",
+        callNowBtn: "តេកក់ឥឡូវនេះ៖ 097 547 1944",
+        calcPriceBtn: "គណនាតម្លៃតាមទំហំដី",
+        heroImgCaption: "ម៉ាស៊ីនច្រូតស្រូវកម្លាំងខ្លាំង ច្រូតលឿន និងស្អាត",
+        readyBadge: "រួចរាល់បម្រើសេវា",
+        servicesHeading: "សេវាកម្មចម្បងរបស់យើង",
+        servicesSubheading: "ចុចជ្រើសរើសសេវាកម្មខាងក្រោម ដើម្បីគណនាតម្លៃ និងកក់ទុកជាមុន",
+        harvestTitle: "សេវាកម្មច្រូតកាត់ស្រូវ",
+        harvestDesc: "ច្រូតស្រូវគ្រប់ប្រភេទ (ស្រូវស្រាល ស្រូវកណ្តាល ស្រូវធ្ងន់ និងស្រូវដួល) ដោយម៉ាស៊ីន Kubota DC-70 Pro ជំនាន់ថ្មី បោកបែនស្អាត មិនបែកគ្រាប់ និងបាញ់ចូលបាវរហ័សទាន់ចិត្ត។",
+        harvestFeat1: "ច្រូតស្អាត កាត់បន្ថយការជ្រុះបាត់បង់គ្រាប់ស្រូវ",
+        harvestFeat2: "ចុះស្រែភក់ ឬស្រូវដួលបានល្អ",
+        harvestFeat3: "តម្លៃប៉ាន់ស្មាន៖ ៤០០,០០០ ៛ / ហិកតា (អាចចរចាតាមស្ថានភាពស្រែ)",
+        bookHarvestBtn: "ជ្រើសរើសសេវាច្រូតកាត់ស្រូវ ➔",
+        tractorTitle: "សេវាកម្មវាយដី និងឈូសដីត្រាក់ទ័រ",
+        tractorDesc: "ភ្ជួររាស់ វាយដីស្រែ វាយដីចម្ការ និងឈូសពង្រាបដីដោយត្រាក់ទ័រ Kubota M6040 កម្លាំងខ្លាំង ធ្វើឱ្យដីម៉ដ្ឋ ធូរ ងាយស្រួលព្រោះ ឬស្ទូង និងបង្កើនទិន្នផលដំណាំ។",
+        tractorFeat1: "វាយដីសើម ដីគោក និងភ្ជួរបង្កប់ជញ្ជ្រាំងបានល្អ",
+        tractorFeat2: "មានប៉ែលមុខសម្រាប់ឈូសពង្រាបភ្លឺ ឬដីឡូត៍",
+        tractorFeat3: "តម្លៃប៉ាន់ស្មាន៖ ២៥០,០០០ ៛ / ហិកតា (អាចចរចាតាមប្រភេទដី)",
+        bookTractorBtn: "ជ្រើសរើសសេវាវាយដីត្រាក់ទ័រ ➔",
+        calcTag: "គណនាតម្លៃ និងកក់ជួល",
+        calcHeading: "ប៉ាន់ស្មានតម្លៃតាមទំហំដីរបស់អ្នក",
+        labelService: "១. ជ្រើសរើសប្រភេទសេវាកម្ម",
+        optHarvest: "🌾 ច្រូតកាត់ស្រូវ (DC-70 Pro)",
+        optTractor: "🚜 វាយដីត្រាក់ទ័រ (M6040)",
+        labelSize: "២. បញ្ចូលទំហំដី",
+        labelUnit: "៣. ខ្នាតរង្វាស់ដី",
+        unitHectare: "ហិកតា (Hectare - ១០០ អា)",
+        unitRai: "រ៉ៃ (Rai - ១៦ អា)",
+        unitAre: "អា (Are - ១០០ ម៉ែត្រការ៉េ)",
+        labelName: "៤. ឈ្មោះរបស់អ្នក",
+        labelPhone: "៥. លេខទូរស័ព្ទទំនាក់ទំនង",
+        labelVillage: "៦. ទីតាំងដីស្រែ (ភូមិ / ឃុំ)",
+        estTotalLabel: "តម្លៃប៉ាន់ស្មានសរុប៖",
+        confirmBookingBtn: "បញ្ជាក់ការកក់សេវា ✓",
+        aboutTag: "អំពីអាជីវកម្មរបស់យើង",
+        aboutTitle: "បងស្រនម៉ាស៉ុនច្រូត — ទំនុកចិត្តរបស់កសិករនៅស្រុកទ្រាំង",
+        aboutDesc: "យើងខ្ញុំមានបទពិសោធន៍យូរឆ្នាំក្នុងការផ្តល់សេវាកម្មច្រូតកាត់ស្រូវ និងវាយដីជូនបងប្អូនកសិករ។ គ្រឿងចក្រទាំងអស់ត្រូវបានថែទាំយ៉ាងយកចិត្តទុកដាក់ ដើម្បីធានាថាការងាររបស់បងប្អូនរួចរាល់ទាន់រដូវកាល មិនខកខានពេលវេលា។",
+        fullAddress: "ទីតាំង៖ ភូមិព្រៃភ្លង ស្រុកទ្រាំង ខេត្តតាកែវ",
+        phoneDisplay: "លេខទូរស័ព្ទ៖",
+        callOwnerBtn: "តេជួបបងស្រនផ្ទាល់",
+        mobileBookBtn: "កក់សេវា",
+        modalTitle: "បានរៀបចំព័ត៌មានកក់រួចរាល់!",
+        modalCallBtn: "តេបញ្ជាក់ទៅកាន់ 097 547 1944",
+        modalSmsBtn: "ផ្ញើសារ SMS ព័ត៌មានកក់",
+        modalCloseBtn: "បិទផ្ទាំងនេះ"
+      },
+      en: {
+        brandName: "Bong Sron Harvesting Service",
+        locationShort: "📍 Prey Phlong Village, Treang, Takeo",
+        heroBadge: "🌾 Trusted Agricultural Service in Takeo",
+        heroTitle: "Fast & Clean Rice Harvesting and Tractor Tilling Services",
+        heroSubtitle: "Serving local farmers with modern Kubota machinery. Minimal grain loss, fine soil tilling, and punctual service in Prey Phlong Village, Treang District, Takeo Province.",
+        callNowBtn: "Call to Book: 097 547 1944",
+        calcPriceBtn: "Estimate Price by Land Size",
+        heroImgCaption: "High-power combine harvester for fast, clean results",
+        readyBadge: "Available Now",
+        servicesHeading: "Our Core Machinery Services",
+        servicesSubheading: "Select a service below to calculate your estimate and book ahead",
+        harvestTitle: "Rice Combine Harvesting",
+        harvestDesc: "Harvesting all rice varieties (including lodged paddy) using our modern Kubota DC-70 Pro combine harvester. Clean threshing with minimal grain loss and fast bagging.",
+        harvestFeat1: "Clean cut with minimal grain loss",
+        harvestFeat2: "Handles muddy fields and lodged rice smoothly",
+        harvestFeat3: "Est. Rate: 400,000 KHR / Hectare (negotiable by field condition)",
+        bookHarvestBtn: "Select Rice Harvesting ➔",
+        tractorTitle: "Tractor Plowing & Land Leveling",
+        tractorDesc: "Heavy-duty plowing, rotary tilling, and front-blade leveling with our Kubota M6040 tractor for soft, even soil ready for seeding or transplanting.",
+        tractorFeat1: "Works on wet paddy fields, dry land, and stubble",
+        tractorFeat2: "Equipped with front dozer blade for bunds & leveling",
+        tractorFeat3: "Est. Rate: 250,000 KHR / Hectare (negotiable by soil type)",
+        bookTractorBtn: "Select Tractor Tilling ➔",
+        calcTag: "Price Estimator & Booking",
+        calcHeading: "Estimate Cost by Your Land Area",
+        labelService: "1. Choose Service Type",
+        optHarvest: "🌾 Rice Harvesting (DC-70 Pro)",
+        optTractor: "🚜 Tractor Tilling (M6040)",
+        labelSize: "2. Enter Land Size",
+        labelUnit: "3. Land Measurement Unit",
+        unitHectare: "Hectare (100 Are)",
+        unitRai: "Rai (16 Are)",
+        unitAre: "Are (100 sqm)",
+        labelName: "4. Your Name",
+        labelPhone: "5. Your Phone Number",
+        labelVillage: "6. Field Location (Village / Commune)",
+        estTotalLabel: "Estimated Total Cost:",
+        confirmBookingBtn: "Confirm Booking Request ✓",
+        aboutTag: "About Our Business",
+        aboutTitle: "Bong Sron Harvesting — Trusted by Farmers in Treang",
+        aboutDesc: "With years of hands-on experience serving farmers across Takeo, our Kubota machinery is well-maintained to ensure your harvest and land preparation finish right on schedule.",
+        fullAddress: "Location: Prey Phlong Village, Treang District, Takeo",
+        phoneDisplay: "Phone:",
+        callOwnerBtn: "Call Bong Sron Directly",
+        mobileBookBtn: "Book Now",
+        modalTitle: "Booking Summary Ready!",
+        modalCallBtn: "Call 097 547 1944 to Confirm",
+        modalSmsBtn: "Send Booking via SMS",
+        modalCloseBtn: "Close Window"
+      }
+    };
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'km' ? 'en' : 'km';
+      document.documentElement.lang = currentLang;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLang][key]) {
+          el.textContent = translations[currentLang][key];
+        }
+      });
+      calculateTotal();
+    }
+
+    function selectService(type) {
+      const radio = document.querySelector(`input[name="serviceType"][value="${type}"]`);
+      if (radio) {
+        radio.checked = true;
+        calculateTotal();
+      }
+      document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function calculateTotal() {
+      const service = document.querySelector('input[name="serviceType"]:checked').value;
+      const size = parseFloat(document.getElementById('landSize').value) || 0;
+      const unit = document.getElementById('landUnit').value;
+
+      const hectares = size * UNIT_TO_HECTARE[unit];
+      const totalKhr = Math.round(hectares * RATES_PER_HECTARE[service]);
+      const totalUsd = (totalKhr / 4000).toFixed(2);
+
+      document.getElementById('totalKhr').textContent = totalKhr.toLocaleString('en-US') + ' ៛';
+      document.getElementById('totalUsd').textContent = currentLang === 'km'
+        ? `≈ $${totalUsd} USD (គិតតាមអត្រា ៤,០០០ ៛)`
+        : `≈ $${totalUsd} USD (at 4,000 KHR/USD)`;
+    }
+
+    function submitBooking(e) {
+      e.preventDefault();
+      const service = document.querySelector('input[name="serviceType"]:checked').value;
+      const size = document.getElementById('landSize').value;
+      const unitSelect = document.getElementById('landUnit');
+      const unitText = unitSelect.options[unitSelect.selectedIndex].text;
+      const name = document.getElementById('customerName').value.trim();
+      const phone = document.getElementById('customerPhone').value.trim();
+      const location = document.getElementById('villageLocation').value.trim();
+      const total = document.getElementById('totalKhr').textContent;
+
+      const serviceLabel = service === 'harvest'
+        ? (currentLang === 'km' ? 'ច្រូតកាត់ស្រូវ (Kubota DC-70 Pro)' : 'Rice Harvesting (Kubota DC-70 Pro)')
+        : (currentLang === 'km' ? 'វាយដីត្រាក់ទ័រ (Kubota M6040)' : 'Tractor Tilling (Kubota M6040)');
+
+      const refCode = '#BS-' + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('bookingRef').textContent = (currentLang === 'km' ? 'លេខកូដកក់៖ ' : 'Booking ID: ') + refCode;
+
+      document.getElementById('modalSummary').innerHTML = `
+        <p><strong>${currentLang === 'km' ? 'សេវាកម្ម៖' : 'Service:'}</strong> ${serviceLabel}</p>
+        <p><strong>${currentLang === 'km' ? 'ទំហំដី៖' : 'Land Area:'}</strong> ${size} (${unitText})</p>
+        <p><strong>${currentLang === 'km' ? 'តម្លៃប៉ាន់ស្មាន៖' : 'Est. Total:'}</strong> <span class="text-kubota-orange font-bold">${total}</span></p>
+        <p><strong>${currentLang === 'km' ? 'អតិថិជន៖' : 'Customer:'}</strong> ${name} (${phone})</p>
+        <p><strong>${currentLang === 'km' ? 'ទីតាំងដី៖' : 'Location:'}</strong> ${location}</p>
+      `;
+
+      const smsBody = encodeURIComponent(
+        `សួស្តីបងស្រន! ខ្ញុំសុំកក់${serviceLabel}
+- ទំហំដី: ${size} ${unitSelect.value}
+- តម្លៃប៉ាន់ស្មាន: ${total}
+- ឈ្មោះ: ${name} (${phone})
+- ទីតាំង: ${location}`
+      );
+      document.getElementById('smsLink').href = `sms:0975471944?body=${smsBody}`;
+
+      document.getElementById('confirmModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('confirmModal').classList.add('hidden');
+    }
+
+    // Initialize total on load
+    calculateTotal();
+  </script>
+</body>
+</html>
