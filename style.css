@@ -1,6 +1,36 @@
- body {
-      font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
-    }
-    .touch-btn {
-      min-height: 52px;
-    }
+body {
+  font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
+}
+
+.machine-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.machine-photo:hover {
+  transform: scale(1.03);
+}
+
+.hero-machine {
+  object-position: center center;
+}
+
+.harvest-photo {
+  object-position: center center;
+}
+
+.tractor-photo {
+  object-position: center center;
+}
+
+.owner-photo {
+  object-position: center top;
+}
+
+.touch-btn {
+  min-height: 52px;
+}
