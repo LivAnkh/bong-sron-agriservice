@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title >បងស្រនម៉ាស៉ុនច្រូត | សេវាកម្មច្រូតកាត់ស្រូវ និងវាយដីត្រាក់ទ័រ ខេត្តតាកែវ</title>
-  <meta name="description" content="បងស្រនម៉ាស៉ុនច្រូត - សេវាកម្មច្រូតកាត់ស្រូវ (Kubota DC-70 Pro) និងវាយដី ឈូសដីត្រាក់ទ័រ (Kubota M6040) នៅភូមិព្រៃភ្លង ស្រុកទ្រាំង ខេត្តតាកែវ។ ទំនាក់ទំនង 097 547 1944" />
+ <!-- 1. The Favicon with just the rice icon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌾</text></svg>">
+<!-- 2. Your Browser Tab Title (Put your full title here) -->
+<title>បងស្រ៊ន-តាកែវ | សេវាកម្មច្រូតកាត់ស្រូវ និងវាយដីត្រាក់ទ័រ ខេត្តតាកែវ</title>
+  <meta name="description" content="បងស្រ៊ន-តាកែវ - សេវាកម្មច្រូតកាត់ស្រូវ (Kubota DC-70 Pro) និងវាយដី ឈូសដីត្រាក់ទ័រ (Kubota M6040) នៅ ភូមិព្រៃភ្លង ឃំុសំបួរ ស្រុកទ្រាំង ខេត្តតាកែវ។ ទំនាក់ទំនង 097 547 1944" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -15,38 +18,57 @@
 
   <!-- Sticky Top Navigation -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-stone-200 shadow-sm">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
       <div class="flex items-center gap-3">
         <div class="w-11 h-11 rounded-xl bg-kubota-orange text-white flex items-center justify-center font-bold text-xl shadow-sm shrink-0">
           🌾
         </div>
         <div>
           <h1 class="font-bold text-lg md:text-xl text-stone-900 leading-tight" data-i18n="brandName">
-            បងស្រនម៉ាស៉ុនច្រូត
+            បងស្រ៊ន-តាកែវ
           </h1>
           <p class="text-xs text-stone-500 flex items-center gap-1" data-i18n="locationShort">
-            📍 ភូមិព្រៃភ្លង ស្រុកទ្រាំង ខេត្តតាកែវ
+            📍  ភូមិព្រៃភ្លង ឃំុសំបួរ ស្រុកទ្រាំង ខេត្តតាកែវ
           </p>
         </div>
       </div>
 
       <div class="flex items-center gap-2 sm:gap-3">
+       
         <!-- Language Switcher -->
         <button id="langToggle" onclick="toggleLanguage()" class="px-3 py-2 rounded-xl border border-stone-300 bg-stone-100 hover:bg-stone-200 text-sm font-semibold text-stone-800 transition">
           EN / ខ្មែរ
         </button>
+          <!-- Theme Toggle -->
+        <button id="themeToggle" onclick="toggleTheme()" class="theme-toggle px-3 py-2 rounded-xl border border-stone-300 bg-stone-100 hover:bg-stone-200 text-sm font-semibold text-stone-800 transition" aria-label="Toggle dark mode">
+          <span id="themeIcon">🌙</span>
+        </button>
         <!-- Direct Call CTA -->
-        <a href="tel:0975471944" class="hidden sm:inline-flex items-center gap-2 bg-paddy-green hover:bg-paddy-dark text-white font-bold px-4 py-2.5 rounded-xl shadow-sm transition">
-          <span>📞</span>
-          <span>097 547 1944</span>
-        </a>
+        <div class="hidden sm:flex items-center gap-2 relative">
+          <button type="button" class="contact-menu-toggle inline-flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white font-bold px-3 py-2.5 rounded-xl shadow-sm transition text-sm">
+            <span>📞</span>
+            <span>តេជួបបងស្រ៊នផ្ទាល់</span>
+          </button>
+        </div>
+
       </div>
     </div>
   </header>
 
+  <div id="contactPopup" class="contact-overlay fixed inset-0 z-[60] hidden items-center justify-center bg-black/50 backdrop-blur-sm p-4" role="dialog" aria-modal="true" aria-labelledby="contactPopupTitle">
+    <div class="contact-dialog relative w-full max-w-sm rounded-2xl bg-white shadow-2xl border border-stone-200 p-5">
+      <button type="button" id="closeContactPopup" aria-label="Close contact choices" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-stone-200 hover:bg-stone-300 text-stone-700 text-lg font-bold flex items-center justify-center transition">✕</button>
+      <h2 id="contactPopupTitle" class="pr-10 pb-4 text-lg font-bold text-stone-900">ជ្រើសរើសលេខដែលអ្នកចង់ហៅ</h2>
+      <div class="flex flex-col gap-3">
+        <a href="tel:0975471944" class="px-4 py-3 rounded-xl bg-kubota-orange hover:bg-kubota-dark text-white font-bold text-center text-sm transition">📞 097 547 1944</a>
+        <a href="tel:070542244" class="px-4 py-3 rounded-xl bg-green-600 hover:bg-green-500 text-white font-bold text-center text-sm transition">📞 070 542 244</a>
+      </div>
+    </div>
+  </div>
+
   <!-- Hero Section -->
   <section class="relative bg-gradient-to-br from-stone-900 via-stone-800 to-paddy-dark text-white overflow-hidden">
-    <div class="max-w-6xl mx-auto px-4 py-12 md:py-16 grid md:grid-cols-2 gap-8 items-center">
+    <div class="max-w-6xl mx-auto px-4 py-8 md:py-12 grid md:grid-cols-2 gap-8 items-center">
       <div class="space-y-5">
         <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-kubota-orange/20 border border-kubota-orange/40 text-orange-300 text-sm font-semibold" data-i18n="heroBadge">
           🌾 សេវាកម្មកសិកម្មប្រចាំខេត្តតាកែវ
@@ -58,11 +80,14 @@
           បម្រើសេវាកម្មជូនបងប្អូនកសិករដោយគ្រឿងចក្រ Kubota ទំនើបៗ ច្រូតស្អាតមិនជ្រុះស្រូវ វាយដីម៉ដ្ឋល្អ ទាន់ពេលវេលា នៅភូមិព្រៃភ្លង ស្រុកទ្រាំង និងតំបន់ជុំវិញខេត្តតាកែវ។
         </p>
 
-        <div class="flex flex-col sm:flex-row gap-3 pt-2">
-          <a href="tel:0975471944" class="touch-btn inline-flex items-center justify-center gap-2 bg-kubota-orange hover:bg-kubota-dark text-white font-bold text-lg px-6 py-3.5 rounded-2xl shadow-lg transition">
+        <div class="flex flex-col sm:flex-row gap-3 pt-3">
+          <!-- Direct Call CTA -->
+        <div class="w-full sm:w-auto flex items-center">
+          <button type="button" class="contact-menu-toggle touch-btn w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-500 text-white font-bold px-6 py-3.5 rounded-2xl shadow-sm transition text-base">
             <span>📞</span>
-            <span data-i18n="callNowBtn">តេកក់ឥឡូវនេះ៖ 097 547 1944</span>
-          </a>
+            <span>តេជួបបងស្រ៊នផ្ទាល់</span>
+          </button>
+        </div>
           <a href="#calculator" class="touch-btn inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-semibold text-base px-6 py-3.5 rounded-2xl transition">
             <span>🧮</span>
             <span data-i18n="calcPriceBtn">គណនាតម្លៃតាមទំហំដី</span>
@@ -87,12 +112,13 @@
   </section>
 
   <!-- Services Section -->
-  <section id="services" class="max-w-6xl mx-auto px-4 py-12 md:py-16">
-    <div class="text-center max-w-2xl mx-auto mb-10">
-      <h3 class="text-2xl md:text-3xl font-bold text-stone-900" data-i18n="servicesHeading">
+  <section id="services" class="bg-white">
+    <div class="max-w-6xl mx-auto px-4 pt-8 pb-4 md:pt-12 md:pb-6">
+    <div class="text-center max-w-2xl mx-auto mb-8">
+      <h3 class="text-3xl md:text-4xl font-bold text-stone-900 leading-tight" data-i18n="servicesHeading">
         សេវាកម្មចម្បងរបស់យើង
       </h3>
-      <p class="text-stone-600 mt-2" data-i18n="servicesSubheading">
+      <p class="text-stone-600 mt-3 text-base md:text-lg" data-i18n="servicesSubheading">
         ចុចជ្រើសរើសសេវាកម្មខាងក្រោម ដើម្បីគណនាតម្លៃ និងកក់ទុកជាមុន
       </p>
     </div>
@@ -154,14 +180,15 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- Price Calculator & Quick Booking Section -->
-  <section id="calculator" class="max-w-4xl mx-auto px-4 py-8 md:py-12">
+  <section id="calculator" class="max-w-4xl mx-auto px-4 pt-4 pb-8 md:pt-6 md:pb-12">
     <div class="bg-white rounded-3xl border border-stone-200 shadow-lg p-6 md:p-10">
-      <div class="mb-6">
+      <div class="mb-6 text-center">
         <span class="text-kubota-orange font-bold text-sm uppercase tracking-wide" data-i18n="calcTag">គណនាតម្លៃ និងកក់ជួល</span>
-        <h3 class="text-2xl md:text-3xl font-bold text-stone-900 mt-1" data-i18n="calcHeading">
+        <h3 class="max-w-2xl mx-auto text-2xl md:text-3xl font-bold text-stone-900 mt-2 leading-tight" data-i18n="calcHeading">
           ប៉ាន់ស្មានតម្លៃតាមទំហំដីរបស់អ្នក
         </h3>
       </div>
@@ -231,7 +258,7 @@
           <div>
             <p class="text-sm text-stone-300" data-i18n="estTotalLabel">តម្លៃប៉ាន់ស្មានសរុប៖</p>
             <p id="totalKhr" class="text-3xl font-extrabold text-orange-400 mt-0.5">400,000 ៛</p>
-            <p id="totalUsd" class="text-sm text-stone-400">≈ $100.00 USD (គិតតាមអត្រា ៤,០០០ ៛)</p>
+            <p id="totalUsd" class="text-sm text-stone-400">≈ $100 USD(គិតតាមអត្រា ៤,០០០ ៛)</p>
           </div>
           <button type="submit" class="touch-btn bg-kubota-orange hover:bg-kubota-dark text-white font-bold text-lg px-7 py-4 rounded-2xl shadow-lg transition shrink-0">
             <span data-i18n="confirmBookingBtn">បញ្ជាក់ការកក់សេវា ✓</span>
@@ -242,43 +269,63 @@
   </section>
 
   <!-- About Us / Owner Trust Section -->
-  <section id="about" class="max-w-6xl mx-auto px-4 py-12 md:py-16">
-    <div class="bg-white rounded-3xl border border-stone-200 shadow-md overflow-hidden grid md:grid-cols-2 items-center">
+  <section id="about" class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 pt-4 pb-8 md:pt-6 md:pb-10">
+      <h3 class="text-center text-3xl md:text-4xl font-bold text-stone-900 leading-tight mb-8" data-i18n="aboutTag">
+        អំពីអាជីវកម្មរបស់យើង
+      </h3>
+      <div class="rounded-3xl border border-stone-200 shadow-md overflow-hidden grid md:grid-cols-2 items-center">
       <div class="h-80 md:h-full bg-stone-100">
-        <img src="images/owner.png" alt="ម្ចាស់អាជីវកម្ម បងស្រនម៉ាស៉ុនច្រូត" class="machine-photo owner-photo w-full h-full" />
+        <img src="images/owner.png" alt="ម្ចាស់អាជីវកម្ម បងស្រ៊ន-តាកែវ" class="machine-photo owner-photo w-full h-full" />
       </div>
       <div class="p-6 md:p-10 space-y-4">
         <span class="inline-block px-3 py-1 rounded-full bg-paddy-light text-paddy-green text-xs font-bold" data-i18n="aboutTag">
           អំពីអាជីវកម្មរបស់យើង
         </span>
         <h3 class="text-2xl md:text-3xl font-bold text-stone-900" data-i18n="aboutTitle">
-          បងស្រនម៉ាស៉ុនច្រូត — ទំនុកចិត្តរបស់កសិករនៅស្រុកទ្រាំង
+          បងស្រ៊ន-តាកែវ — ទំនុកចិត្តរបស់កសិករនៅស្រុកទ្រាំង
         </h3>
-        <p class="text-stone-600 leading-relaxed" data-i18n="aboutDesc">
-          យើងខ្ញុំមានបទពិសោធន៍យូរឆ្នាំក្នុងការផ្តល់សេវាកម្មច្រូតកាត់ស្រូវ និងវាយដីជូនបងប្អូនកសិករ។ គ្រឿងចក្រទាំងអស់ត្រូវបានថែទាំយ៉ាងយកចិត្តទុកដាក់ ដើម្បីធានាថាការងាររបស់បងប្អូនរួចរាល់ទាន់រដូវកាល មិនខកខានពេលវេលា។
-        </p>
+        <div class="text-stone-600 leading-relaxed space-y-3" data-i18n="aboutDesc">
+          <p>យើងខ្ញុំមានបទពិសោធន៍ដ៏ជោគជ័យជាច្រើនឆ្នាំ តាំងពីឆ្នាំ ២០១៦ មកម្ល៉េះ ក្នុងការផ្តល់សេវាកម្មច្រូតកាត់ស្រូវ និងវាយដីត្រាក់ទ័រជូនបងប្អូនកសិករ។</p>
+          <ul class="space-y-2 list-disc pl-5">
+            <li>គ្រឿងចក្រទំនើប និងមានសុវត្ថិភាពខ្ពស់៖ គ្រឿងចក្រទាំងអស់ត្រូវបានត្រួតពិនិត្យ និងថែទាំយ៉ាងយកចិត្តទុកដាក់ជាប្រចាំ មុនពេលចុះស្រែ ដើម្បីធានាថាមិនមានការខូចខាតនៅពេលកំពុងបំពេញការងារ។</li>
+            <li>សេវាកម្មលឿនរហ័ស ទាន់ពេលវេលា៖ យើងយល់ច្បាស់ពីតម្លៃនៃពេលវេលារបស់កសិករ ដូច្នេះយើងខ្ញុំប្តេជ្ញាចិត្តបំពេញការងារជូនបានរួចរាល់ទាន់រដូវកាល។</li>
+            <li>អ្នកបើកបរមានបទពិសោធន៍៖ ប្រតិបត្តិករ (អ្នកបើកបរ) របស់យើងមានជំនាញច្បាស់លាស់ និងចេះបត់បែនតាមស្ថានភាពដីជាក់ស្តែង។</li>
+            <li>តម្លៃសមរម្យ និងទំនួលខុសត្រូវខ្ពស់៖ យើងផ្តល់ជូននូវតម្លៃថោកសមរម្យ ព្រមទាំងមានការទទួលខុសត្រូវពេញលេញលើលទ្ធផលការងារ។</li>
+          </ul>
+        </div>
         <div class="pt-2 space-y-2 text-stone-800 font-semibold">
-          <p>📍 <span data-i18n="fullAddress">ទីតាំង៖ ភូមិព្រៃភ្លង ស្រុកទ្រាំង ខេត្តតាកែវ</span></p>
-          <p>📞 <span data-i18n="phoneDisplay">លេខទូរស័ព្ទ៖</span> <a href="tel:0975471944" class="text-kubota-orange underline font-bold">097 547 1944</a></p>
+          <p>📍 <span data-i18n="fullAddress">ទីតាំង៖ ភូមិព្រៃភ្លង ឃំុសំបួរ ស្រុកទ្រាំង ខេត្តតាកែវ</span></p>
+          <div class="flex flex-col sm:flex-row gap-2">
+            <a href="tel:0975471944" class="text-kubota-orange underline font-bold">📞 097 547 1944</a>
+            <a href="tel:070542244" class="text-kubota-orange underline font-bold">📞 070 542 244</a>
+          </div>
         </div>
         <div class="pt-3 flex flex-wrap gap-3">
-          <a href="tel:0975471944" class="touch-btn inline-flex items-center gap-2 bg-paddy-green hover:bg-paddy-dark text-white font-bold px-6 py-3 rounded-2xl transition">
+           <!-- Direct Call CTA -->
+        <div class="hidden sm:flex items-center gap-2 relative">
+          <button type="button" class="contact-menu-toggle inline-flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white font-bold px-7 py-3 rounded-xl shadow-sm transition text-sm">
             <span>📞</span>
-            <span data-i18n="callOwnerBtn">តេជួបបងស្រនផ្ទាល់</span>
-          </a>
+            <span>តេជួបបងស្រ៊នផ្ទាល់</span>
+          </button>
         </div>
+        </div>
+      </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-stone-900 text-stone-300 py-10 px-4">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+  <footer class="bg-stone-900 text-stone-300 py-10 md:py-12 px-4 ">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
       <div>
-        <h4 class="text-white font-bold text-lg">បងស្រនម៉ាស៉ុនច្រូត</h4>
-        <p class="text-sm text-stone-400 mt-1">ភូមិព្រៃភ្លង ស្រុកទ្រាំង ខេត្តតាកែវ • ទូរស័ព្ទ៖ 097 547 1944</p>
+        <h4 class="text-white font-bold text-xl md:text-2xl">បងស្រ៊ន-តាកែវ</h4>
+        <p class="text-sm md:text-base text-stone-400 mt-2">ភូមិព្រៃភ្លង ឃំុសំបួរ ស្រុកទ្រាំង ខេត្តតាកែវ • ទូរស័ព្ទ៖ 097 547 1944 / 070 542 244</p>
       </div>
-      <p class="text-xs text-stone-500">© 2026 បងស្រនម៉ាស៉ុនច្រូត. រក្សាសិទ្ធិគ្រប់យ៉ាង។</p>
+      <div class="text-sm text-stone-500 text-center md:text-right space-y-1">
+        <p>Developed by <span class="text-stone-300 font-semibold">LivAn Chreom</span></p>
+        <p>© 2026 ជ្រឺម​ លីវអាន. រក្សាសិទ្ធិគ្រប់យ៉ាង។</p>
+      </div>
     </div>
   </footer>
 
@@ -286,13 +333,21 @@
   <div class="fixed bottom-0 inset-x-0 z-40 bg-white border-t border-stone-200 p-3 flex gap-3 md:hidden shadow-2xl">
     <a href="tel:0975471944" class="flex-1 bg-paddy-green text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-base shadow">
       <span>📞</span>
-      <span>តេ 097 547 1944</span>
+      <span>097 547 1944</span>
+    </a>
+    <a href="tel:070542244" class="flex-1 bg-amber-500 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-base shadow">
+      <span>📞</span>
+      <span>070 542 244</span>
     </a>
     <a href="#calculator" class="flex-1 bg-kubota-orange text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-base shadow">
       <span>🧮</span>
-      <span data-i18n="mobileBookBtn">កក់សេវា</span>
+      <span data-i18n="mobileBookBtn">កក់</span>
     </a>
   </div>
+
+  <button id="backToTop" type="button" aria-label="Back to top" title="Back to top" class="fixed bottom-24 right-4 z-40 hidden h-12 w-12 items-center justify-center rounded-full bg-kubota-orange text-white text-2xl font-bold shadow-lg transition hover:bg-kubota-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white md:bottom-6">
+    ↑
+  </button>
 
   <!-- Booking Confirmation Modal -->
   <div id="confirmModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">

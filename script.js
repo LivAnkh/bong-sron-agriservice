@@ -35,11 +35,11 @@
     const translations = {
       km: {
         brandName: "បងស្រនម៉ាស៉ុនច្រូត",
-        locationShort: "📍 ភូមិព្រៃភ្លង ស្រុកទ្រាំង ខេត្តតាកែវ",
+        locationShort: "📍 ភូមិព្រៃភ្លង ឃំុសំបួរ ស្រុកទ្រាំង ខេត្តតាកែវ",
         heroBadge: "🌾 សេវាកម្មកសិកម្មប្រចាំខេត្តតាកែវ",
         heroTitle: "សេវាកម្មច្រូតកាត់ស្រូវ និងវាយដីត្រាក់ទ័រ រហ័ស ស្អាត តម្លៃសមរម្យ",
         heroSubtitle: "បម្រើសេវាកម្មជូនបងប្អូនកសិករដោយគ្រឿងចក្រ Kubota ទំនើបៗ ច្រូតស្អាតមិនជ្រុះស្រូវ វាយដីម៉ដ្ឋល្អ ទាន់ពេលវេលា នៅភូមិព្រៃភ្លង ស្រុកទ្រាំង និងតំបន់ជុំវិញខេត្តតាកែវ។",
-        callNowBtn: "តេកក់ឥឡូវនេះ៖ 097 547 1944",
+        callNowBtn: "តេកក់ឥឡូវនេះ 097 547 1944",
         calcPriceBtn: "គណនាតម្លៃតាមទំហំដី",
         heroImgCaption: "ម៉ាស៊ីនច្រូតស្រូវកម្លាំងខ្លាំង ច្រូតលឿន និងស្អាត",
         readyBadge: "រួចរាល់បម្រើសេវា",
@@ -137,6 +137,26 @@
       }
     };
 
+    function toggleTheme() {
+      const body = document.body;
+      const isDark = body.classList.toggle('dark-mode');
+      const icon = document.getElementById('themeIcon');
+      if (icon) {
+        icon.textContent = isDark ? '☀️' : '🌙';
+      }
+      localStorage.setItem('themeMode', isDark ? 'dark' : 'light');
+    }
+
+    function initTheme() {
+      const savedTheme = localStorage.getItem('themeMode');
+      const isDark = savedTheme === 'dark';
+      document.body.classList.toggle('dark-mode', isDark);
+      const icon = document.getElementById('themeIcon');
+      if (icon) {
+        icon.textContent = isDark ? '☀️' : '🌙';
+      }
+    }
+
     function toggleLanguage() {
       currentLang = currentLang === 'km' ? 'en' : 'km';
       document.documentElement.lang = currentLang;
@@ -165,7 +185,7 @@
 
       const hectares = size * UNIT_TO_HECTARE[unit];
       const totalKhr = Math.round(hectares * RATES_PER_HECTARE[service]);
-      const totalUsd = (totalKhr / 4000).toFixed(2);
+      const totalUsd = Math.round(totalKhr / 4000);
 
       document.getElementById('totalKhr').textContent = totalKhr.toLocaleString('en-US') + ' ៛';
       document.getElementById('totalUsd').textContent = currentLang === 'km'
@@ -215,5 +235,57 @@
       document.getElementById('confirmModal').classList.add('hidden');
     }
 
+    function openContactPopup() {
+      const popup = document.getElementById('contactPopup');
+      if (popup) {
+        popup.classList.remove('hidden');
+        popup.classList.add('flex');
+      }
+    }
+
+    function closeContactPopup() {
+      const popup = document.getElementById('contactPopup');
+      if (popup) {
+        popup.classList.add('hidden');
+        popup.classList.remove('flex');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggles = document.querySelectorAll('.contact-menu-toggle');
+      const closeBtn = document.getElementById('closeContactPopup');
+      const popup = document.getElementById('contactPopup');
+      const backToTop = document.getElementById('backToTop');
+
+      toggles.forEach((toggle) => toggle.addEventListener('click', openContactPopup));
+
+      if (backToTop) {
+        const updateBackToTopVisibility = () => {
+          const isVisible = window.scrollY > 320;
+          backToTop.classList.toggle('hidden', !isVisible);
+          backToTop.classList.toggle('flex', isVisible);
+        };
+
+        window.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
+        backToTop.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        updateBackToTopVisibility();
+      }
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeContactPopup);
+      }
+
+      if (popup) {
+        popup.addEventListener('click', (event) => {
+          if (event.target === popup) {
+            closeContactPopup();
+          }
+        });
+      }
+    });
+
     // Initialize total on load
+    initTheme();
     calculateTotal();

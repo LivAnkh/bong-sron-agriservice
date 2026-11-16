@@ -1,5 +1,65 @@
 body {
   font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
+  background: #f8f7f5;
+  color: #1c1917;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+body.dark-mode {
+  background: #111827;
+  color: #e5e7eb;
+}
+
+body.dark-mode .bg-white,
+body.dark-mode .bg-white\/95,
+body.dark-mode .bg-stone-50,
+body.dark-mode .bg-stone-900\/90,
+body.dark-mode .bg-stone-900,
+body.dark-mode .bg-stone-100,
+body.dark-mode .bg-stone-800,
+body.dark-mode .bg-stone-50 {
+  background-color: #1f2937 !important;
+}
+
+body.dark-mode .text-stone-900,
+body.dark-mode .text-stone-800,
+body.dark-mode .text-stone-700,
+body.dark-mode .text-stone-600,
+body.dark-mode .text-stone-300,
+body.dark-mode .text-stone-500,
+body.dark-mode .text-stone-400 {
+  color: #e5e7eb !important;
+}
+
+body.dark-mode .border-stone-200,
+body.dark-mode .border-stone-300,
+body.dark-mode .border-white\/25,
+body.dark-mode .border-white\/15 {
+  border-color: rgba(255,255,255,0.12) !important;
+}
+
+body.dark-mode .bg-stone-900\/90 {
+  background-color: rgba(17, 24, 39, 0.9) !important;
+}
+
+body.dark-mode .bg-stone-50 {
+  background-color: #111827 !important;
+}
+
+body.dark-mode .theme-toggle,
+body.dark-mode #langToggle,
+body.dark-mode .touch-btn {
+  box-shadow: none;
+}
+
+.theme-toggle {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 1.1rem;
 }
 
 .machine-photo {
@@ -33,4 +93,29 @@ body {
 
 .touch-btn {
   min-height: 52px;
+}
+
+.contact-overlay:not(.hidden) {
+  animation: contact-overlay-enter 180ms ease-out both;
+}
+
+.contact-dialog {
+  animation: contact-dialog-enter 220ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes contact-overlay-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes contact-dialog-enter {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-overlay:not(.hidden),
+  .contact-dialog {
+    animation: none;
+  }
 }
