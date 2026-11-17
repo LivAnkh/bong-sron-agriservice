@@ -70,6 +70,8 @@
         labelName: "៤. ឈ្មោះរបស់អ្នក",
         labelPhone: "៥. លេខទូរស័ព្ទទំនាក់ទំនង",
         labelVillage: "៦. ទីតាំងដីស្រែ (ភូមិ / ឃុំ)",
+        labelPhoto: "រូបថតស្រែ (មិនចាំបាច់)",
+        photoHelp: "អាចបញ្ចូលរូបភាព JPG, PNG ឬ WebP (ទំហំមិនលើស ៨ MB)",
         estTotalLabel: "តម្លៃប៉ាន់ស្មានសរុប៖",
         confirmBookingBtn: "បញ្ជាក់ការកក់សេវា ✓",
         aboutTag: "អំពីអាជីវកម្មរបស់យើង",
@@ -121,6 +123,8 @@
         labelName: "4. Your Name",
         labelPhone: "5. Your Phone Number",
         labelVillage: "6. Field Location (Village / Commune)",
+        labelPhoto: "Field photo (optional)",
+        photoHelp: "Add a JPG, PNG, or WebP image (up to 8 MB)",
         estTotalLabel: "Estimated Total Cost:",
         confirmBookingBtn: "Confirm Booking Request ✓",
         aboutTag: "About Our Business",
@@ -195,6 +199,15 @@
 
     async function submitBooking(e) {
       e.preventDefault();
+      const photoInput = document.getElementById('fieldPhoto');
+      const fieldPhoto = photoInput.files[0];
+      if (fieldPhoto && fieldPhoto.size > 8 * 1024 * 1024) {
+        alert(currentLang === 'km'
+          ? 'រូបភាពត្រូវមានទំហំមិនលើស ៨ MB។'
+          : 'The image must be 8 MB or smaller.');
+        return;
+      }
+
       const submitButton = e.submitter;
       if (submitButton) submitButton.disabled = true;
 
@@ -240,19 +253,20 @@
       );
       document.getElementById('smsLink').href = `sms:0975471944?body=${smsBody}`;
 
+      const bookingData = new FormData();
+      bookingData.set('bookingId', refCode);
+      bookingData.set('service', service);
+      bookingData.set('size', size);
+      bookingData.set('unit', unitSelect.value);
+      bookingData.set('name', name);
+      bookingData.set('phone', phone);
+      bookingData.set('location', location);
+      if (fieldPhoto) bookingData.set('fieldPhoto', fieldPhoto);
+
       try {
         const response = await fetch('telegram-booking.php', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            bookingId: refCode,
-            service,
-            size,
-            unit: unitSelect.value,
-            name,
-            phone,
-            location
-          })
+          body: bookingData
         });
         const result = await response.json();
         if (!response.ok || !result.success) {
@@ -293,8 +307,35 @@
       const closeBtn = document.getElementById('closeContactPopup');
       const popup = document.getElementById('contactPopup');
       const backToTop = document.getElementById('backToTop');
+      const photoInput = document.getElementById('fieldPhoto');
+      const photoPreview = document.getElementById('fieldPhotoPreview');
 
       toggles.forEach((toggle) => toggle.addEventListener('click', openContactPopup));
+
+      if (photoInput && photoPreview) {
+        let previewUrl = null;
+        photoInput.addEventListener('change', () => {
+          if (previewUrl) URL.revokeObjectURL(previewUrl);
+          const photo = photoInput.files[0];
+          if (!photo) {
+            photoPreview.removeAttribute('src');
+            photoPreview.classList.add('hidden');
+            return;
+          }
+          if (photo.size > 8 * 1024 * 1024) {
+            photoInput.value = '';
+            photoPreview.removeAttribute('src');
+            photoPreview.classList.add('hidden');
+            alert(currentLang === 'km'
+              ? 'រូបភាពត្រូវមានទំហំមិនលើស ៨ MB។'
+              : 'The image must be 8 MB or smaller.');
+            return;
+          }
+          previewUrl = URL.createObjectURL(photo);
+          photoPreview.src = previewUrl;
+          photoPreview.classList.remove('hidden');
+        });
+      }
 
       if (backToTop) {
         const updateBackToTopVisibility = () => {

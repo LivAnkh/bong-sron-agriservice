@@ -242,7 +242,7 @@
           </div>
           <div>
             <label for="customerPhone" class="block text-sm font-bold text-stone-700 mb-2" data-i18n="labelPhone">៥. លេខទូរស័ព្ទទំនាក់ទំនង</label>
-            <input type="tel" id="customerPhone" placeholder="097 xxx xxxx" required
+            <input type="tel" id="customerPhone" placeholder="097 xxx xxxx" inputmode="numeric" pattern="[0-9]{6,15}" minlength="6" maxlength="15" autocomplete="tel" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required
               class="touch-btn w-full px-4 py-3 rounded-2xl border border-stone-300 text-base focus:outline-none focus:ring-2 focus:ring-kubota-orange" />
           </div>
         </div>
@@ -251,6 +251,14 @@
           <label for="villageLocation" class="block text-sm font-bold text-stone-700 mb-2" data-i18n="labelVillage">៦. ទីតាំងដីស្រែ (ភូមិ / ឃុំ)</label>
           <input type="text" id="villageLocation" placeholder="ឧទាហរណ៍៖ ភូមិព្រៃភ្លង ស្រុកទ្រាំង" required
             class="touch-btn w-full px-4 py-3 rounded-2xl border border-stone-300 text-base focus:outline-none focus:ring-2 focus:ring-kubota-orange" />
+        </div>
+
+        <div>
+          <label for="fieldPhoto" class="block text-sm font-bold text-stone-700 mb-2" data-i18n="labelPhoto">រូបថតស្រែ (មិនចាំបាច់)</label>
+          <input type="file" id="fieldPhoto" name="fieldPhoto" accept="image/jpeg,image/png,image/webp"
+            class="touch-btn w-full px-4 py-3 rounded-2xl border border-stone-300 text-base text-stone-900 focus:outline-none focus:ring-2 focus:ring-kubota-orange" />
+          <p class="text-xs text-stone-500 mt-1" data-i18n="photoHelp">អាចបញ្ចូលរូបភាព JPG, PNG ឬ WebP (ទំហំមិនលើស ៨ MB)</p>
+          <img id="fieldPhotoPreview" alt="Field photo preview" class="hidden mt-3 max-h-56 w-auto rounded-xl border border-stone-200 object-contain" />
         </div>
 
         <!-- Live Price Display Box -->
@@ -330,18 +338,14 @@
   </footer>
 
   <!-- Mobile Sticky Bottom Action Bar -->
-  <div class="fixed bottom-0 inset-x-0 z-40 bg-white border-t border-stone-200 p-3 flex gap-3 md:hidden shadow-2xl">
-    <a href="tel:0975471944" class="flex-1 bg-paddy-green text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-base shadow">
+  <div class="fixed bottom-0 inset-x-0 z-40 bg-white border-t border-stone-200 p-3 flex gap-2 md:hidden shadow-2xl">
+    <button type="button" class="contact-menu-toggle flex-1 min-w-0 inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-500 text-white font-bold px-2 py-3 rounded-xl text-sm text-center leading-tight shadow transition">
       <span>📞</span>
-      <span>097 547 1944</span>
-    </a>
-    <a href="tel:070542244" class="flex-1 bg-amber-500 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-base shadow">
-      <span>📞</span>
-      <span>070 542 244</span>
-    </a>
-    <a href="#calculator" class="flex-1 bg-kubota-orange text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-base shadow">
+      <span>តេជួបបងស្រ៊នផ្ទាល់</span>
+    </button>
+    <a href="#calculator" class="flex-1 min-w-0 inline-flex items-center justify-center gap-2 bg-kubota-orange hover:bg-kubota-dark text-white font-bold px-2 py-3 rounded-xl text-sm text-center leading-tight shadow transition">
       <span>🧮</span>
-      <span data-i18n="mobileBookBtn">កក់</span>
+      <span data-i18n="mobileBookBtn">កក់សេវា</span>
     </a>
   </div>
 

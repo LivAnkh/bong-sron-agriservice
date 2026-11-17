@@ -19,7 +19,12 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     respond(405, ['success' => false]);
 }
 
-$input = json_decode(file_get_contents('php://input') ?: '', true);
+$contentType = strtolower((string) ($_SERVER['CONTENT_TYPE'] ?? ''));
+if (strpos($contentType, 'multipart/form-data') === 0) {
+    $input = $_POST;
+} else {
+    $input = json_decode(file_get_contents('php://input') ?: '', true);
+}
 if (!is_array($input)) {
     respond(400, ['success' => false]);
 }
@@ -32,6 +37,48 @@ $phone = textField($input, 'phone');
 $location = textField($input, 'location');
 $bookingId = textField($input, 'bookingId');
 
+$fieldPhoto = null;
+if (isset($_FILES['fieldPhoto'])) {
+    $upload = $_FILES['fieldPhoto'];
+    if (!is_array($upload) || !isset($upload['error'], $upload['tmp_name'], $upload['size'])) {
+        respond(422, ['success' => false]);
+    }
+
+    if ($upload['error'] !== UPLOAD_ERR_NO_FILE) {
+        if (
+            $upload['error'] !== UPLOAD_ERR_OK ||
+            !is_string($upload['tmp_name']) ||
+            !is_uploaded_file($upload['tmp_name']) ||
+            !is_int($upload['size']) ||
+            $upload['size'] <= 0 ||
+            $upload['size'] > 8 * 1024 * 1024
+        ) {
+            respond(422, ['success' => false]);
+        }
+        if (!function_exists('finfo_open')) {
+            respond(500, ['success' => false]);
+        }
+
+        $fileInfo = new finfo(FILEINFO_MIME_TYPE);
+        $mimeType = $fileInfo->file($upload['tmp_name']);
+        $photoTypes = [
+            'image/jpeg' => ['field-photo.jpg', 'photo'],
+            'image/png' => ['field-photo.png', 'document'],
+            'image/webp' => ['field-photo.webp', 'document'],
+        ];
+        if (!is_string($mimeType) || !isset($photoTypes[$mimeType])) {
+            respond(422, ['success' => false]);
+        }
+
+        $fieldPhoto = [
+            'path' => $upload['tmp_name'],
+            'mime' => $mimeType,
+            'name' => $photoTypes[$mimeType][0],
+            'method' => $photoTypes[$mimeType][1],
+        ];
+    }
+}
+
 $services = [
     'harvest' => ['label' => 'ច្រូតកាត់ស្រូវ (Kubota DC-70 Pro)', 'rate' => 400000],
     'tractor' => ['label' => 'វាយដីត្រាក់ទ័រ (Kubota M6040)', 'rate' => 250000],
@@ -43,7 +90,7 @@ if (
     !isset($services[$service], $unitFactors[$unit]) ||
     $size === false || $size <= 0 || $size > 10000 ||
     $name === '' || strlen($name) > 200 ||
-    !preg_match('/^[0-9+().\s-]{6,24}$/', $phone) ||
+    !preg_match('/^[0-9]{6,15}$/', $phone) ||
     $location === '' || strlen($location) > 500
 ) {
     respond(422, ['success' => false]);
@@ -69,20 +116,33 @@ $message = "🌾 មានការកក់សេវាកម្មថ្មី
     "📐 ទំហំដី៖ {$size} {$unitLabels[$unit]}\n" .
     '💰 តម្លៃប៉ាន់ស្មាន៖ ' . number_format($estimatedTotal) . ' ៛';
 
-$payload = json_encode([
-    'chat_id' => $chatId,
-    'text' => $message,
-], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+$telegramMethod = 'sendMessage';
+if ($fieldPhoto !== null) {
+    $telegramMethod = $fieldPhoto['method'] === 'photo' ? 'sendPhoto' : 'sendDocument';
+    $photoField = $fieldPhoto['method'] === 'photo' ? 'photo' : 'document';
+    $payload = [
+        'chat_id' => $chatId,
+        'caption' => $message,
+        $photoField => new CURLFile($fieldPhoto['path'], $fieldPhoto['mime'], $fieldPhoto['name']),
+    ];
+} else {
+    $payload = json_encode([
+        'chat_id' => $chatId,
+        'text' => $message,
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+}
 
-$curl = curl_init("https://api.telegram.org/bot{$token}/sendMessage");
+$curl = curl_init("https://api.telegram.org/bot{$token}/{$telegramMethod}");
 $curlOptions = [
     CURLOPT_POST => true,
     CURLOPT_POSTFIELDS => $payload,
-    CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_CONNECTTIMEOUT => 5,
     CURLOPT_TIMEOUT => 15,
 ];
+if ($fieldPhoto === null) {
+    $curlOptions[CURLOPT_HTTPHEADER] = ['Content-Type: application/json'];
+}
 if (PHP_OS_FAMILY === 'Windows' && defined('CURLSSLOPT_NATIVE_CA')) {
     $curlOptions[CURLOPT_SSL_OPTIONS] = CURLSSLOPT_NATIVE_CA;
 }
