@@ -193,8 +193,11 @@
         : `≈ $${totalUsd} USD (at 4,000 KHR/USD)`;
     }
 
-    function submitBooking(e) {
+    async function submitBooking(e) {
       e.preventDefault();
+      const submitButton = e.submitter;
+      if (submitButton) submitButton.disabled = true;
+
       const service = document.querySelector('input[name="serviceType"]:checked').value;
       const size = document.getElementById('landSize').value;
       const unitSelect = document.getElementById('landUnit');
@@ -211,13 +214,22 @@
       const refCode = '#BS-' + Math.floor(1000 + Math.random() * 9000);
       document.getElementById('bookingRef').textContent = (currentLang === 'km' ? 'លេខកូដកក់៖ ' : 'Booking ID: ') + refCode;
 
-      document.getElementById('modalSummary').innerHTML = `
-        <p><strong>${currentLang === 'km' ? 'សេវាកម្ម៖' : 'Service:'}</strong> ${serviceLabel}</p>
-        <p><strong>${currentLang === 'km' ? 'ទំហំដី៖' : 'Land Area:'}</strong> ${size} (${unitText})</p>
-        <p><strong>${currentLang === 'km' ? 'តម្លៃប៉ាន់ស្មាន៖' : 'Est. Total:'}</strong> <span class="text-kubota-orange font-bold">${total}</span></p>
-        <p><strong>${currentLang === 'km' ? 'អតិថិជន៖' : 'Customer:'}</strong> ${name} (${phone})</p>
-        <p><strong>${currentLang === 'km' ? 'ទីតាំងដី៖' : 'Location:'}</strong> ${location}</p>
-      `;
+      const summary = document.getElementById('modalSummary');
+      summary.replaceChildren();
+      const summaryRows = [
+        [currentLang === 'km' ? 'សេវាកម្ម៖' : 'Service:', serviceLabel],
+        [currentLang === 'km' ? 'ទំហំដី៖' : 'Land Area:', `${size} (${unitText})`],
+        [currentLang === 'km' ? 'តម្លៃប៉ាន់ស្មាន៖' : 'Est. Total:', total],
+        [currentLang === 'km' ? 'អតិថិជន៖' : 'Customer:', `${name} (${phone})`],
+        [currentLang === 'km' ? 'ទីតាំងដី៖' : 'Location:', location]
+      ];
+      summaryRows.forEach(([label, value]) => {
+        const row = document.createElement('p');
+        const heading = document.createElement('strong');
+        heading.textContent = label;
+        row.append(heading, ` ${value}`);
+        summary.appendChild(row);
+      });
 
       const smsBody = encodeURIComponent(
         `សួស្តីបងស្រន! ខ្ញុំសុំកក់${serviceLabel}
@@ -228,7 +240,32 @@
       );
       document.getElementById('smsLink').href = `sms:0975471944?body=${smsBody}`;
 
-      document.getElementById('confirmModal').classList.remove('hidden');
+      try {
+        const response = await fetch('telegram-booking.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            bookingId: refCode,
+            service,
+            size,
+            unit: unitSelect.value,
+            name,
+            phone,
+            location
+          })
+        });
+        const result = await response.json();
+        if (!response.ok || !result.success) {
+          throw new Error('Booking notification failed');
+        }
+        document.getElementById('confirmModal').classList.remove('hidden');
+      } catch (error) {
+        alert(currentLang === 'km'
+          ? 'មិនអាចផ្ញើការកក់បានទេ។ សូមព្យាយាមម្តងទៀត ឬទាក់ទងតាមទូរស័ព្ទ។'
+          : 'Could not send your booking. Please try again or contact us by phone.');
+      } finally {
+        if (submitButton) submitButton.disabled = false;
+      }
     }
 
     function closeModal() {
