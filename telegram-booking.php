@@ -1,6 +1,4 @@
 <?php
-declare(strict_types=1);
-
 header('Content-Type: application/json; charset=utf-8');
 
 function respond(int $status, array $data): void
@@ -77,20 +75,33 @@ $payload = json_encode([
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
 $curl = curl_init("https://api.telegram.org/bot{$token}/sendMessage");
-curl_setopt_array($curl, [
+$curlOptions = [
     CURLOPT_POST => true,
     CURLOPT_POSTFIELDS => $payload,
     CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_CONNECTTIMEOUT => 5,
     CURLOPT_TIMEOUT => 15,
-]);
+];
+if (PHP_OS_FAMILY === 'Windows' && defined('CURLSSLOPT_NATIVE_CA')) {
+    $curlOptions[CURLOPT_SSL_OPTIONS] = CURLSSLOPT_NATIVE_CA;
+}
+curl_setopt_array($curl, $curlOptions);
 $telegramResponse = curl_exec($curl);
 $httpStatus = (int) curl_getinfo($curl, CURLINFO_HTTP_CODE);
-curl_close($curl);
+$curlError = curl_error($curl);
 
 $telegramResult = is_string($telegramResponse) ? json_decode($telegramResponse, true) : null;
+if ($telegramResponse === false) {
+    error_log('Telegram booking cURL request failed: ' . $curlError);
+    respond(502, ['success' => false]);
+}
+
 if ($httpStatus < 200 || $httpStatus >= 300 || !is_array($telegramResult) || empty($telegramResult['ok'])) {
+    $description = is_array($telegramResult) && is_string($telegramResult['description'] ?? null)
+        ? substr(preg_replace('/[\r\n]+/', ' ', $telegramResult['description']), 0, 300)
+        : 'Invalid Telegram API response';
+    error_log("Telegram booking API rejected request (HTTP {$httpStatus}): {$description}");
     respond(502, ['success' => false]);
 }
 
