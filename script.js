@@ -69,7 +69,8 @@
         unitAre: "អា (Are - ១០០ ម៉ែត្រការ៉េ)",
         labelName: "៤. ឈ្មោះរបស់អ្នក",
         labelPhone: "៥. លេខទូរស័ព្ទទំនាក់ទំនង",
-        labelVillage: "៦. ទីតាំងដីស្រែ (ភូមិ / ឃុំ)",
+        labelDate: "៦. កាលបរិច្ឆេទដែលចង់កក់",
+        labelVillage: "៧. ទីតាំងដីស្រែ (ភូមិ / ឃុំ)",
         labelPhoto: "រូបថតស្រែ (មិនចាំបាច់)",
         photoHelp: "អាចបញ្ចូលរូបភាព JPG, PNG ឬ WebP (ទំហំមិនលើស ៨ MB)",
         estTotalLabel: "តម្លៃប៉ាន់ស្មានសរុប៖",
@@ -122,7 +123,8 @@
         unitAre: "Are (100 sqm)",
         labelName: "4. Your Name",
         labelPhone: "5. Your Phone Number",
-        labelVillage: "6. Field Location (Village / Commune)",
+        labelDate: "6. Preferred Booking Date",
+        labelVillage: "7. Field Location (Village / Commune)",
         labelPhoto: "Field photo (optional)",
         photoHelp: "Add a JPG, PNG, or WebP image (up to 8 MB)",
         estTotalLabel: "Estimated Total Cost:",
@@ -217,6 +219,7 @@
       const unitText = unitSelect.options[unitSelect.selectedIndex].text;
       const name = document.getElementById('customerName').value.trim();
       const phone = document.getElementById('customerPhone').value.trim();
+      const bookingDate = document.getElementById('bookingDate').value;
       const location = document.getElementById('villageLocation').value.trim();
       const total = document.getElementById('totalKhr').textContent;
 
@@ -234,6 +237,7 @@
         [currentLang === 'km' ? 'ទំហំដី៖' : 'Land Area:', `${size} (${unitText})`],
         [currentLang === 'km' ? 'តម្លៃប៉ាន់ស្មាន៖' : 'Est. Total:', total],
         [currentLang === 'km' ? 'អតិថិជន៖' : 'Customer:', `${name} (${phone})`],
+        [currentLang === 'km' ? 'កាលបរិច្ឆេទចង់កក់៖' : 'Preferred Date:', bookingDate],
         [currentLang === 'km' ? 'ទីតាំងដី៖' : 'Location:', location]
       ];
       summaryRows.forEach(([label, value]) => {
@@ -249,6 +253,7 @@
 - ទំហំដី: ${size} ${unitSelect.value}
 - តម្លៃប៉ាន់ស្មាន: ${total}
 - ឈ្មោះ: ${name} (${phone})
+- កាលបរិច្ឆេទចង់កក់: ${bookingDate}
 - ទីតាំង: ${location}`
       );
       document.getElementById('smsLink').href = `sms:0975471944?body=${smsBody}`;
@@ -260,6 +265,7 @@
       bookingData.set('unit', unitSelect.value);
       bookingData.set('name', name);
       bookingData.set('phone', phone);
+      bookingData.set('bookingDate', bookingDate);
       bookingData.set('location', location);
       if (fieldPhoto) bookingData.set('fieldPhoto', fieldPhoto);
 
@@ -309,8 +315,19 @@
       const backToTop = document.getElementById('backToTop');
       const photoInput = document.getElementById('fieldPhoto');
       const photoPreview = document.getElementById('fieldPhotoPreview');
+      const bookingDateInput = document.getElementById('bookingDate');
 
       toggles.forEach((toggle) => toggle.addEventListener('click', openContactPopup));
+
+      if (bookingDateInput) {
+        const today = new Date();
+        const minDate = [
+          today.getFullYear(),
+          String(today.getMonth() + 1).padStart(2, '0'),
+          String(today.getDate()).padStart(2, '0')
+        ].join('-');
+        bookingDateInput.min = minDate;
+      }
 
       if (photoInput && photoPreview) {
         let previewUrl = null;

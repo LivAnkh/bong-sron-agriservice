@@ -34,6 +34,7 @@ $size = filter_var($input['size'] ?? null, FILTER_VALIDATE_FLOAT);
 $unit = textField($input, 'unit');
 $name = textField($input, 'name');
 $phone = textField($input, 'phone');
+$bookingDate = textField($input, 'bookingDate');
 $location = textField($input, 'location');
 $bookingId = textField($input, 'bookingId');
 
@@ -85,12 +86,20 @@ $services = [
 ];
 $unitFactors = ['hectare' => 1, 'rai' => 0.16, 'are' => 0.01];
 $unitLabels = ['hectare' => 'ហិកតា', 'rai' => 'រ៉ៃ', 'are' => 'អា'];
+$bookingTimezone = new DateTimeZone('Asia/Phnom_Penh');
+$bookingDateValue = DateTimeImmutable::createFromFormat('!Y-m-d', $bookingDate, $bookingTimezone);
+$bookingDateErrors = DateTimeImmutable::getLastErrors();
+$validBookingDate = $bookingDateValue !== false &&
+    $bookingDateValue->format('Y-m-d') === $bookingDate &&
+    ($bookingDateErrors === false || ($bookingDateErrors['warning_count'] === 0 && $bookingDateErrors['error_count'] === 0)) &&
+    $bookingDateValue >= new DateTimeImmutable('today', $bookingTimezone);
 
 if (
     !isset($services[$service], $unitFactors[$unit]) ||
     $size === false || $size <= 0 || $size > 10000 ||
     $name === '' || strlen($name) > 200 ||
     !preg_match('/^[0-9]{6,15}$/', $phone) ||
+    !$validBookingDate ||
     $location === '' || strlen($location) > 500
 ) {
     respond(422, ['success' => false]);
@@ -111,6 +120,7 @@ $message = "🌾 មានការកក់សេវាកម្មថ្មី
     "🔖 លេខកូដ៖ {$bookingId}\n" .
     "👤 ឈ្មោះ៖ {$name}\n" .
     "📞 លេខទូរស័ព្ទ៖ {$phone}\n" .
+    "📅 កាលបរិច្ឆេទចង់កក់៖ {$bookingDate}\n" .
     "📍 ទីតាំង៖ {$location}\n" .
     "🚜 ប្រភេទសេវាកម្ម៖ {$services[$service]['label']}\n" .
     "📐 ទំហំដី៖ {$size} {$unitLabels[$unit]}\n" .
