@@ -31,6 +31,28 @@
       rai: 0.16,
       are: 0.01
     };
+//image slider in script.js 
+    const featuredMachines = [
+      {
+        image: 'images/kubota-dc70-pro.png',
+        title: 'Kubota DC-70 Pro',
+        alt: {
+          km: 'ម៉ាស៊ីនច្រូតស្រូវ Kubota DC-70 Pro',
+          en: 'Kubota DC-70 Pro rice combine harvester'
+        },
+        captionKey: 'heroImgCaption'
+      },
+      {
+        image: 'images/tractor1.jpg',
+        title: 'Kubota M6040',
+        alt: {
+          km: 'ត្រាក់ទ័រ Kubota M6040',
+          en: 'Kubota M6040 tractor'
+        },
+        captionKey: 'heroTractorCaption'
+      }
+    ];
+    let activeFeaturedMachine = 0;
 
     const translations = {
       km: {
@@ -42,6 +64,7 @@
         callNowBtn: "តេកក់ឥឡូវនេះ 097 547 1944",
         calcPriceBtn: "គណនាតម្លៃតាមទំហំដី",
         heroImgCaption: "ម៉ាស៊ីនច្រូតស្រូវកម្លាំងខ្លាំង ច្រូតលឿន និងស្អាត",
+        heroTractorCaption: "ត្រាក់ទ័រកម្លាំងខ្លាំង សម្រាប់ភ្ជួរ វាយដី និងឈូសពង្រាបដី",
         readyBadge: "រួចរាល់បម្រើសេវា",
         servicesHeading: "សេវាកម្មចម្បងរបស់យើង",
         servicesSubheading: "ចុចជ្រើសរើសសេវាកម្មខាងក្រោម ដើម្បីគណនាតម្លៃ និងកក់ទុកជាមុន",
@@ -96,6 +119,7 @@
         callNowBtn: "Call to Book: 097 547 1944",
         calcPriceBtn: "Estimate Price by Land Size",
         heroImgCaption: "High-power combine harvester for fast, clean results",
+        heroTractorCaption: "Powerful tractor for plowing, tilling, and land leveling",
         readyBadge: "Available Now",
         servicesHeading: "Our Core Machinery Services",
         servicesSubheading: "Select a service below to calculate your estimate and book ahead",
@@ -172,7 +196,29 @@
           el.textContent = translations[currentLang][key];
         }
       });
+      showFeaturedMachine(activeFeaturedMachine);
       calculateTotal();
+    }
+
+    function showFeaturedMachine(index) {
+      activeFeaturedMachine = (index + featuredMachines.length) % featuredMachines.length;
+      const machine = featuredMachines[activeFeaturedMachine];
+      const image = document.getElementById('heroMachineImage');
+      const title = document.getElementById('heroMachineTitle');
+      const caption = document.getElementById('heroMachineCaption');
+
+      if (!image || !title || !caption) return;
+
+      image.src = machine.image;
+      image.alt = machine.alt[currentLang];
+      title.textContent = machine.title;
+      caption.textContent = translations[currentLang][machine.captionKey];
+
+      document.querySelectorAll('[data-machine-slide]').forEach((indicator, indicatorIndex) => {
+        const isActive = indicatorIndex === activeFeaturedMachine;
+        indicator.classList.toggle('is-active', isActive);
+        indicator.setAttribute('aria-pressed', String(isActive));
+      });
     }
 
     function selectService(type) {
@@ -316,8 +362,48 @@
       const photoInput = document.getElementById('fieldPhoto');
       const photoPreview = document.getElementById('fieldPhotoPreview');
       const bookingDateInput = document.getElementById('bookingDate');
+      const machineCarousel = document.getElementById('featuredMachineCarousel');
 
       toggles.forEach((toggle) => toggle.addEventListener('click', openContactPopup));
+
+      if (machineCarousel) {
+        const previousButton = document.getElementById('heroMachinePrevious');
+        const nextButton = document.getElementById('heroMachineNext');
+        const indicators = machineCarousel.querySelectorAll('[data-machine-slide]');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let carouselTimer;
+
+        const stopCarousel = () => {
+          window.clearInterval(carouselTimer);
+          carouselTimer = null;
+        };
+        const startCarousel = () => {
+          if (reduceMotion || document.hidden || carouselTimer) return;
+          carouselTimer = window.setInterval(() => {
+            showFeaturedMachine(activeFeaturedMachine + 1);
+          }, 3000);
+        };
+
+        previousButton.addEventListener('click', () => showFeaturedMachine(activeFeaturedMachine - 1));
+        nextButton.addEventListener('click', () => showFeaturedMachine(activeFeaturedMachine + 1));
+        indicators.forEach((indicator) => {
+          indicator.addEventListener('click', () => {
+            showFeaturedMachine(Number(indicator.dataset.machineSlide));
+          });
+        });
+
+        machineCarousel.addEventListener('mouseenter', stopCarousel);
+        machineCarousel.addEventListener('mouseleave', startCarousel);
+        machineCarousel.addEventListener('focusin', stopCarousel);
+        machineCarousel.addEventListener('focusout', (event) => {
+          if (!machineCarousel.contains(event.relatedTarget)) startCarousel();
+        });
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) stopCarousel();
+          else startCarousel();
+        });
+        startCarousel();
+      }
 
       if (bookingDateInput) {
         const today = new Date();

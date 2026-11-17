@@ -62,6 +62,10 @@ body.dark-mode .touch-btn {
   font-size: 1.1rem;
 }
 
+.hero-title {
+  line-height: 4rem;
+}
+
 .machine-photo {
   display: block;
   width: 100%;
@@ -77,6 +81,79 @@ body.dark-mode .touch-btn {
 
 .hero-machine {
   object-position: center center;
+}
+
+.hero-machine-frame {
+  height: 20rem;
+  overflow: hidden;
+}
+
+.hero-machine-details {
+  height: 6rem;
+}
+
+.hero-machine-caption {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+@media (min-width: 768px) {
+  .hero-machine-frame {
+    height: 24rem;
+  }
+}
+
+.machine-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 9999px;
+  background: rgba(28, 25, 23, 0.65);
+  color: white;
+  font-size: 30px;
+  line-height: 1;
+  transition: background 0.2s ease;
+}
+
+.machine-carousel-arrow:hover {
+  background: rgba(21, 128, 61, 0.95);
+}
+
+.machine-carousel-arrow:focus-visible,
+.machine-carousel-dot:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 3px;
+}
+
+.machine-carousel-indicators {
+  position: absolute;
+  right: 0;
+  bottom: 12px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.machine-carousel-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.65);
+  transition: width 0.2s ease, background 0.2s ease;
+}
+
+.machine-carousel-dot.is-active {
+  width: 24px;
+  background: white;
 }
 
 .harvest-photo {

@@ -73,11 +73,11 @@
         <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-kubota-orange/20 border border-kubota-orange/40 text-orange-300 text-sm font-semibold" data-i18n="heroBadge">
           🌾 សេវាកម្មកសិកម្មប្រចាំខេត្តតាកែវ
         </span>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug" data-i18n="heroTitle">
+        <h2 id="heroTitle" class="text-3xl md:text-4xl lg:text-5xl font-bold hero-title" data-i18n="heroTitle">
           សេវាកម្មច្រូតកាត់ស្រូវ និងវាយដីត្រាក់ទ័រ រហ័ស ស្អាត តម្លៃសមរម្យ
         </h2>
         <p class="text-stone-300 text-base md:text-lg leading-relaxed" data-i18n="heroSubtitle">
-          បម្រើសេវាកម្មជូនបងប្អូនកសិករដោយគ្រឿងចក្រ Kubota ទំនើបៗ ច្រូតស្អាតមិនជ្រុះស្រូវ វាយដីម៉ដ្ឋល្អ ទាន់ពេលវេលា នៅភូមិព្រៃភ្លង ស្រុកទ្រាំង និងតំបន់ជុំវិញខេត្តតាកែវ។
+          បម្រើសេវាកម្មជូនបងប្អូនកសិករដោយគ្រឿងចក្រទំនើបៗ ច្រូតស្អាតមិនជ្រុះស្រូវ វាយដីម៉ដ្ឋល្អ ទាន់ពេលវេលា នៅភូមិព្រៃភ្លង ស្រុកទ្រាំង និងតំបន់ជុំវិញខេត្តតាកែវ។
         </p>
 
         <div class="flex flex-col sm:flex-row gap-3 pt-3">
@@ -95,16 +95,24 @@
         </div>
       </div>
 
-      <!-- Featured Machine Card -->
-      <div class="relative">
+      <!-- Featured Machine Slider -->
+      <div id="featuredMachineCarousel" class="relative" role="region" aria-roledescription="carousel" aria-label="Featured machinery">
         <div class="rounded-3xl overflow-hidden border-4 border-white/15 shadow-2xl bg-stone-800">
-          <img src="images/kubota-dc70-pro.png" alt="ម៉ាស៊ីនច្រូតស្រូវ Kubota DC-70 Pro" class="machine-photo hero-machine w-full h-80 md:h-96" />
-          <div class="p-4 bg-stone-900/90 flex items-center justify-between">
-            <div>
-              <p class="font-bold text-white text-base">Kubota DC-70 Pro</p>
-              <p class="text-xs text-stone-300" data-i18n="heroImgCaption">ម៉ាស៊ីនច្រូតស្រូវកម្លាំងខ្លាំង ច្រូតលឿន និងស្អាត</p>
+          <div class="hero-machine-frame relative">
+            <img id="heroMachineImage" src="images/kubota-dc70-pro.png" alt="ម៉ាស៊ីនច្រូតស្រូវ Kubota DC-70 Pro" class="machine-photo hero-machine w-full h-full" />
+            <button type="button" id="heroMachinePrevious" class="machine-carousel-arrow left-3" aria-label="Previous machine">‹</button>
+            <button type="button" id="heroMachineNext" class="machine-carousel-arrow right-3" aria-label="Next machine">›</button>
+            <div class="machine-carousel-indicators" aria-label="Choose a machine">
+              <button type="button" class="machine-carousel-dot is-active" data-machine-slide="0" aria-label="Show Kubota DC-70 Pro" aria-pressed="true"></button>
+              <button type="button" class="machine-carousel-dot" data-machine-slide="1" aria-label="Show Kubota M6040" aria-pressed="false"></button>
             </div>
-            <span class="px-3 py-1 rounded-full bg-paddy-green text-white text-xs font-bold" data-i18n="readyBadge">រួចរាល់បម្រើសេវា</span>
+          </div>
+          <div class="hero-machine-details p-4 bg-stone-900/90 flex items-center justify-between">
+            <div class="min-w-0 flex-1 pr-3">
+              <p id="heroMachineTitle" class="font-bold text-white text-base truncate">Kubota DC-70 Pro</p>
+              <p id="heroMachineCaption" class="hero-machine-caption text-xs text-stone-300" data-i18n="heroImgCaption">ម៉ាស៊ីនច្រូតស្រូវកម្លាំងខ្លាំង ច្រូតលឿន និងស្អាត</p>
+            </div>
+            <span class="shrink-0 px-3 py-1 rounded-full bg-paddy-green text-white text-xs font-bold" data-i18n="readyBadge">រួចរាល់បម្រើសេវា</span>
           </div>
         </div>
       </div>
@@ -290,7 +298,7 @@
       </h3>
       <div class="rounded-3xl border border-stone-200 shadow-md overflow-hidden grid md:grid-cols-2 items-center">
       <div class="h-80 md:h-full bg-stone-100">
-        <img src="images/owner.png" alt="ម្ចាស់អាជីវកម្ម បងស្រ៊ន-តាកែវ" class="machine-photo owner-photo w-full h-full" />
+        <img src="images/owner.jpg" alt="ម្ចាស់អាជីវកម្ម បងស្រ៊ន-តាកែវ" class="machine-photo owner-photo w-full h-full" />
       </div>
       <div class="p-6 md:p-10 space-y-4">
         <span class="inline-block px-3 py-1 rounded-full bg-paddy-light text-paddy-green text-xs font-bold" data-i18n="aboutTag">
