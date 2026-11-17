@@ -20,7 +20,7 @@
         }
       }
     }
-    let currentLang = 'km';
+    const currentLang = 'km';
     const RATES_PER_HECTARE = {
       harvest: 400000, // 400,000 KHR per hectare
       tractor: 250000  // 250,000 KHR per hectare
@@ -185,19 +185,6 @@
       if (icon) {
         icon.textContent = isDark ? '☀️' : '🌙';
       }
-    }
-
-    function toggleLanguage() {
-      currentLang = currentLang === 'km' ? 'en' : 'km';
-      document.documentElement.lang = currentLang;
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[currentLang][key]) {
-          el.textContent = translations[currentLang][key];
-        }
-      });
-      showFeaturedMachine(activeFeaturedMachine);
-      calculateTotal();
     }
 
     function showFeaturedMachine(index) {
