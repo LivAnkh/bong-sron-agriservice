@@ -54,6 +54,7 @@
     ];
     let activeFeaturedMachine = 0;
 
+    //change language and translations
     const translations = {
       km: {
         brandName: "បងស្រនម៉ាស៉ុនច្រូត",
@@ -166,7 +167,8 @@
         modalCloseBtn: "Close Window"
       }
     };
-
+ 
+    // Theme toggle and persistence
     function toggleTheme() {
       const body = document.body;
       const isDark = body.classList.toggle('dark-mode');
@@ -176,7 +178,7 @@
       }
       localStorage.setItem('themeMode', isDark ? 'dark' : 'light');
     }
-
+   // Initialize theme on page load
     function initTheme() {
       const savedTheme = localStorage.getItem('themeMode');
       const isDark = savedTheme === 'dark';
@@ -186,7 +188,7 @@
         icon.textContent = isDark ? '☀️' : '🌙';
       }
     }
-
+   // Function to show the featured machine in the hero section
     function showFeaturedMachine(index) {
       activeFeaturedMachine = (index + featuredMachines.length) % featuredMachines.length;
       const machine = featuredMachines[activeFeaturedMachine];
@@ -208,6 +210,7 @@
       });
     }
 
+    // Function to select a service type and scroll to the calculator
     function selectService(type) {
       const radio = document.querySelector(`input[name="serviceType"][value="${type}"]`);
       if (radio) {
@@ -290,7 +293,6 @@
 - ទីតាំង: ${location}`
       );
       document.getElementById('smsLink').href = `sms:0975471944?body=${smsBody}`;
-
       const bookingData = new FormData();
       bookingData.set('bookingId', refCode);
       bookingData.set('service', service);
@@ -332,7 +334,6 @@
         popup.classList.add('flex');
       }
     }
-
     function closeContactPopup() {
       const popup = document.getElementById('contactPopup');
       if (popup) {
@@ -340,7 +341,6 @@
         popup.classList.remove('flex');
       }
     }
-
     document.addEventListener('DOMContentLoaded', () => {
       const toggles = document.querySelectorAll('.contact-menu-toggle');
       const closeBtn = document.getElementById('closeContactPopup');
@@ -352,7 +352,6 @@
       const machineCarousel = document.getElementById('featuredMachineCarousel');
 
       toggles.forEach((toggle) => toggle.addEventListener('click', openContactPopup));
-
       if (machineCarousel) {
         const previousButton = document.getElementById('heroMachinePrevious');
         const nextButton = document.getElementById('heroMachineNext');
@@ -370,7 +369,6 @@
             showFeaturedMachine(activeFeaturedMachine + 1);
           }, 3000);
         };
-
         previousButton.addEventListener('click', () => showFeaturedMachine(activeFeaturedMachine - 1));
         nextButton.addEventListener('click', () => showFeaturedMachine(activeFeaturedMachine + 1));
         indicators.forEach((indicator) => {
@@ -378,7 +376,6 @@
             showFeaturedMachine(Number(indicator.dataset.machineSlide));
           });
         });
-
         machineCarousel.addEventListener('mouseenter', stopCarousel);
         machineCarousel.addEventListener('mouseleave', startCarousel);
         machineCarousel.addEventListener('focusin', stopCarousel);
@@ -391,7 +388,6 @@
         });
         startCarousel();
       }
-
       if (bookingDateInput) {
         const today = new Date();
         const minDate = [
@@ -401,7 +397,6 @@
         ].join('-');
         bookingDateInput.min = minDate;
       }
-
       if (photoInput && photoPreview) {
         let previewUrl = null;
         photoInput.addEventListener('change', () => {
@@ -426,25 +421,21 @@
           photoPreview.classList.remove('hidden');
         });
       }
-
       if (backToTop) {
         const updateBackToTopVisibility = () => {
           const isVisible = window.scrollY > 320;
           backToTop.classList.toggle('hidden', !isVisible);
           backToTop.classList.toggle('flex', isVisible);
         };
-
         window.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
         backToTop.addEventListener('click', () => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         });
         updateBackToTopVisibility();
       }
-
       if (closeBtn) {
         closeBtn.addEventListener('click', closeContactPopup);
       }
-
       if (popup) {
         popup.addEventListener('click', (event) => {
           if (event.target === popup) {
